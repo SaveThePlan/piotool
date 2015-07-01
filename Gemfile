@@ -26,6 +26,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # needed for the deployment to Heroku
 gem 'rails_12factor'
 
+# Forms made easy !
+gem 'simple_form', '~> 3.1.0'
+
+# Bootstrap (sass)
+gem 'bootstrap-sass', '~> 3.3.1'
+# auto vendor prefix
+gem 'autoprefixer-rails', '~> 4.0.2.2'
+# Bootstrap datetimepicker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+gem 'font-awesome-sass'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,5 +56,18 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # spec
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0'
+
+  # Code coverage
+  gem 'simplecov'
+  gem 'simplecov-rcov'
+  gem 'simplecov-json'
+
+  # Utils
+  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'database_cleaner'
 end
 
