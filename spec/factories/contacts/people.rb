@@ -9,6 +9,7 @@ FactoryGirl.define do
     website "http://example.com"
     mobile "+33 6 23 45 67 89"
     job "CEO"
+    user
   end
 
 end

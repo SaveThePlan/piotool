@@ -25,6 +25,20 @@ RSpec.describe Contact, type: :model do
       it { expect(b_contact).to be_valid }
       it { expect(build :contact, name: nil).to_not be_valid }
     end
+
+    describe 'presence of user' do
+      it { expect(b_contact).to be_valid }
+      it { expect(build :contact, user: nil).to_not be_valid }
+    end
+  end
+
+
+  context 'relations' do
+    describe '.user (belongs_to)' do
+      subject { b_contact }
+      it { expect(subject).to respond_to :user }
+      it { expect(subject.user).to be_a User }
+    end
   end
 
 

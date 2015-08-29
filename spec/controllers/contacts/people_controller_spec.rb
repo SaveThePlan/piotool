@@ -10,15 +10,17 @@ RSpec.describe Contacts::PeopleController, type: :controller do
     attributes_for :contact_person, name: nil
   }
 
+  let(:user) { create :user }
+
   let(:valid_session) { {} }
 
   before do
-    user_signed_in
+    user_signed_in user
   end
 
   describe "GET #index" do
     it "assigns all contacts_people as @contacts_people" do
-      person = Contacts::Person.create! valid_attributes
+      person = create(:contact_person)
       get :index, {}, valid_session
       expect(assigns(:contacts_people)).to eq([person])
     end
@@ -26,7 +28,7 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested contacts_person as @contacts_person" do
-      person = Contacts::Person.create! valid_attributes
+      person = create(:contact_person)
       get :show, {:id => person.to_param}, valid_session
       expect(assigns(:contacts_person)).to eq(person)
     end
@@ -41,7 +43,7 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested contacts_person as @contacts_person" do
-      person = Contacts::Person.create! valid_attributes
+      person = create(:contact_person)
       get :edit, {:id => person.to_param}, valid_session
       expect(assigns(:contacts_person)).to eq(person)
     end
@@ -59,6 +61,11 @@ RSpec.describe Contacts::PeopleController, type: :controller do
         post :create, {:contacts_person => valid_attributes}, valid_session
         expect(assigns(:contacts_person)).to be_a(Contacts::Person)
         expect(assigns(:contacts_person)).to be_persisted
+      end
+
+      it "newly created contacts_person belongs_to user" do
+        post :create, {:contacts_person => valid_attributes}, valid_session
+        expect(assigns(:contacts_person).user).to eq user
       end
 
       it "redirects to the created contacts_person" do
@@ -87,20 +94,20 @@ RSpec.describe Contacts::PeopleController, type: :controller do
       }
 
       it "updates the requested contacts_person" do
-        person = Contacts::Person.create! valid_attributes
+        person = create(:contact_person)
         put :update, {:id => person.to_param, :contacts_person => new_attributes}, valid_session
         person.reload
         expect(person.name).to eq new_attributes[:name]
       end
 
       it "assigns the requested contacts_person as @contacts_person" do
-        person = Contacts::Person.create! valid_attributes
+        person = create(:contact_person)
         put :update, {:id => person.to_param, :contacts_person => valid_attributes}, valid_session
         expect(assigns(:contacts_person)).to eq(person)
       end
 
       it "redirects to the contacts_person" do
-        person = Contacts::Person.create! valid_attributes
+        person = create(:contact_person)
         put :update, {:id => person.to_param, :contacts_person => valid_attributes}, valid_session
         expect(response).to redirect_to(person)
       end
@@ -108,13 +115,13 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
     context "with invalid params" do
       it "assigns the contacts_person as @contacts_person" do
-        person = Contacts::Person.create! valid_attributes
+        person = create(:contact_person)
         put :update, {:id => person.to_param, :contacts_person => invalid_attributes}, valid_session
         expect(assigns(:contacts_person)).to eq(person)
       end
 
       it "re-renders the 'edit' template" do
-        person = Contacts::Person.create! valid_attributes
+        person = create(:contact_person)
         put :update, {:id => person.to_param, :contacts_person => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end
@@ -123,14 +130,14 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested contacts_person" do
-      person = Contacts::Person.create! valid_attributes
+      person = create(:contact_person)
       expect {
         delete :destroy, {:id => person.to_param}, valid_session
       }.to change(Contacts::Person, :count).by(-1)
     end
 
     it "redirects to the contacts_people list" do
-      person = Contacts::Person.create! valid_attributes
+      person = create(:contact_person)
       delete :destroy, {:id => person.to_param}, valid_session
       expect(response).to redirect_to(contacts_people_url)
     end

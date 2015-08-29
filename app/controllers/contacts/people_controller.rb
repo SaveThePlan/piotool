@@ -24,7 +24,7 @@ class Contacts::PeopleController < ApplicationController
   # POST /contacts/people
   # POST /contacts/people.json
   def create
-    @contacts_person = Contacts::Person.new(contacts_person_params)
+    @contacts_person = Contacts::Person.new(contacts_person_params.merge(user: current_user))
 
     respond_to do |format|
       if @contacts_person.save
