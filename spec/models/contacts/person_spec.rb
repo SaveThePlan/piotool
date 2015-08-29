@@ -6,7 +6,7 @@ RSpec.describe Contacts::Person, type: :model do
 
   let(:b_contact) { build :contact_person }
   let(:b_known_contact) { build :contact_person, mobile: mobile, job: job }
-
+  let(:b_in_company) { build :contact_person_in_company }
 
   context 'inheritance' do
     describe 'subclass Contact' do
@@ -30,6 +30,15 @@ RSpec.describe Contacts::Person, type: :model do
     describe 'presence of name' do
       it { expect(b_contact).to be_valid }
       it { expect(build :contact_person, name: nil).to_not be_valid }
+    end
+  end
+
+
+  context 'relations' do
+    describe '.comany (belongs_to Contacts::Company)' do
+      subject { b_in_company }
+      it { expect(subject).to respond_to :company }
+      it { expect(subject.company).to be_a Contacts::Company }
     end
   end
 

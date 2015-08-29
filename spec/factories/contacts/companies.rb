@@ -11,6 +11,16 @@ FactoryGirl.define do
     tva "tva-124356"
     employees_count 12
     user
+
+    factory :contact_company_with_people do
+      transient do
+        people_count 2
+      end
+
+      after(:create) do |obj, evaluator|
+        create_list(:contact_person, evaluator.people_count, company: obj)
+      end
+    end
   end
 
 end
