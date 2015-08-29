@@ -6,9 +6,10 @@ RSpec.describe Contact, type: :model do
   let(:email) { "john@example.com" }
   let(:address) { "A la croisee des chemins" }
   let(:phone) { "01 22 33 44 55" }
+  let(:fax) { "01 22 33 44 00" }
   let(:website) { "http://website.com" }
 
-  let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website }
+  let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website, fax: fax }
 
   context 'attributes' do
     subject { b_known_contact }
@@ -35,6 +36,12 @@ RSpec.describe Contact, type: :model do
       it { should respond_to(:phone) }
       it { expect(subject.phone).to be_a String }
       it { expect(subject.phone).to eq phone }
+    end
+
+    describe '.fax' do
+      it { should respond_to(:fax) }
+      it { expect(subject.fax).to be_a String }
+      it { expect(subject.fax).to eq fax }
     end
 
     describe '.website' do
