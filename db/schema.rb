@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829135820) do
+ActiveRecord::Schema.define(version: 20150829143343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,15 @@ ActiveRecord::Schema.define(version: 20150829135820) do
     t.text     "address"
     t.string   "phone"
     t.string   "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "fax"
     t.string   "mobile"
     t.string   "job"
     t.integer  "user_id"
+    t.string   "siret"
+    t.string   "tva"
+    t.integer  "employees_count"
   end
 
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree

@@ -1,0 +1,13 @@
+<%= simple_form_for(@contacts_company) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :siret %>
+    <%= f.input :tva %>
+    <%= f.input :employees_count %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
