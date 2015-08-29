@@ -6,6 +6,10 @@ RSpec.describe ContactsController, type: :controller do
     attributes_for :contact
   }
 
+  let(:invalid_attributes) {
+    attributes_for :contact, name: nil
+  }
+
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -58,6 +62,18 @@ RSpec.describe ContactsController, type: :controller do
         expect(response).to redirect_to(Contact.last)
       end
     end
+
+    context "with invalid params" do
+      it "assigns a newly created but unsaved contact as @contact" do
+        post :create, {:contact => invalid_attributes}, valid_session
+        expect(assigns(:contact)).to be_a_new(Contact)
+      end
+
+      it "re-renders the 'new' template" do
+        post :create, {:contact => invalid_attributes}, valid_session
+        expect(response).to render_template("new")
+      end
+    end
   end
 
   describe "PUT #update" do
@@ -83,6 +99,20 @@ RSpec.describe ContactsController, type: :controller do
         contact = Contact.create! valid_attributes
         put :update, {:id => contact.to_param, :contact => valid_attributes}, valid_session
         expect(response).to redirect_to(contact)
+      end
+    end
+
+    context "with invalid params" do
+      it "assigns the contact as @contact" do
+        contact = Contact.create! valid_attributes
+        put :update, {:id => contact.to_param, :contact => invalid_attributes}, valid_session
+        expect(assigns(:contact)).to eq(contact)
+      end
+
+      it "re-renders the 'edit' template" do
+        contact = Contact.create! valid_attributes
+        put :update, {:id => contact.to_param, :contact => invalid_attributes}, valid_session
+        expect(response).to render_template("edit")
       end
     end
   end

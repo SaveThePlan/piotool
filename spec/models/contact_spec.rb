@@ -9,7 +9,17 @@ RSpec.describe Contact, type: :model do
   let(:fax) { "01 22 33 44 00" }
   let(:website) { "http://website.com" }
 
+  let(:b_contact) { build :contact }
   let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website, fax: fax }
+
+
+  context 'validations' do
+    describe 'presence of name' do
+      it { expect(b_contact).to be_valid }
+      it { expect(build :contact, name: nil).to_not be_valid }
+    end
+  end
+
 
   context 'attributes' do
     subject { b_known_contact }

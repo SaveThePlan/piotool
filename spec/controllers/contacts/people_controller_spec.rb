@@ -7,7 +7,7 @@ RSpec.describe Contacts::PeopleController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for :contact_person, name: nil
   }
 
   let(:valid_session) { {} }
@@ -79,14 +79,14 @@ RSpec.describe Contacts::PeopleController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {name: 'New name'}
       }
 
       it "updates the requested contacts_person" do
         person = Contacts::Person.create! valid_attributes
         put :update, {:id => person.to_param, :contacts_person => new_attributes}, valid_session
         person.reload
-        skip("Add assertions for updated state")
+        expect(person.name).to eq new_attributes[:name]
       end
 
       it "assigns the requested contacts_person as @contacts_person" do

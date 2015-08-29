@@ -4,6 +4,7 @@ RSpec.describe Contacts::Person, type: :model do
   let(:mobile) { "06 22 33 44 55" }
   let(:job) { "Boss" }
 
+  let(:b_contact) { build :contact_person }
   let(:b_known_contact) { build :contact_person, mobile: mobile, job: job }
 
 
@@ -14,6 +15,14 @@ RSpec.describe Contacts::Person, type: :model do
 
     describe 'keeps table_name' do
       it { expect(Contacts::Person.table_name).to eq Contact.table_name }
+    end
+  end
+
+
+  context 'validations' do
+    describe 'presence of name' do
+      it { expect(b_contact).to be_valid }
+      it { expect(build :contact_person, name: nil).to_not be_valid }
     end
   end
 
