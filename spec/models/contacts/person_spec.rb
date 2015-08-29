@@ -19,6 +19,13 @@ RSpec.describe Contacts::Person, type: :model do
   end
 
 
+  context 'included modules' do
+    describe 'PermitsAttributes' do
+      it { expect(subject).to be_kind_of PermitsAttributes }
+    end
+  end
+
+
   context 'validations' do
     describe 'presence of name' do
       it { expect(b_contact).to be_valid }

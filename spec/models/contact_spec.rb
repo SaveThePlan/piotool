@@ -13,6 +13,13 @@ RSpec.describe Contact, type: :model do
   let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website, fax: fax }
 
 
+  context 'included modules' do
+    describe 'PermitsAttributes' do
+      it { expect(subject).to be_kind_of PermitsAttributes }
+    end
+  end
+
+
   context 'validations' do
     describe 'presence of name' do
       it { expect(b_contact).to be_valid }
