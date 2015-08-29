@@ -12,6 +12,10 @@ RSpec.describe ContactsController, type: :controller do
 
   let(:valid_session) { {} }
 
+  before do
+    user_signed_in
+  end
+
   describe "GET #index" do
     it "assigns all contacts as @contacts" do
       contact = Contact.create! valid_attributes
