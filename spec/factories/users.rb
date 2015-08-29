@@ -12,7 +12,9 @@ FactoryGirl.define do
         contacts_count 2
       end
 
-      contacts { build_list(:contact, contacts_count) }
+      after(:create) do |obj, evaluator|
+        create_list(:contact, evaluator.contacts_count, user: obj)
+      end
     end
   end
 

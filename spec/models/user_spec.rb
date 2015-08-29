@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   let(:email) { 'myemail@example.com' }
   let(:b_user) { build :user }
   let(:b_known_user) { build :user, email: email }
-  let(:b_with_contacts) { build :user_with_contacts, contacts_count: list_count }
+  let(:c_with_contacts) { create :user_with_contacts, contacts_count: list_count }
 
 
   context 'included modules' do
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
 
   context 'relations' do
     describe '.contacts (has_many)' do
-      subject { b_with_contacts }
+      subject { c_with_contacts }
       it { expect(subject).to respond_to :contacts }
       it { expect(subject.contacts.length).to eq list_count }
       it { expect(subject.contacts.first).to be_a Contact }
