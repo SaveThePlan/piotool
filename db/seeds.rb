@@ -1,4 +1,5 @@
 admin = User.create!(email: 'realnanook@gmail.com', password: '12345678', password_confirmation: '12345678')
+admin.add_role :admin
 
 user = User.create!(email: 'user@example.com', password: '12345678', password_confirmation: '12345678')
 
