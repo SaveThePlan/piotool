@@ -1,0 +1,35 @@
+<div class="content-box col-centered">
+  <h2>Users</h2>
+
+  <%= paginate @users %>
+  <p class="pagination-total"><%= page_entries_info @users %></p>
+
+  <table class="table tablesorter">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>email</th>
+      <th>Act as</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.has_role?(:admin) %>
+                <span class="green">ADMIN</span><br/>
+            <% end %>
+            <%= link_to 'ACT AS', act_as_user_path(user), method: :post, class: 'btn btn-primary' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @users %>
+  <p class="pagination-total"><%= page_entries_info @users %></p>
+
+</div>
