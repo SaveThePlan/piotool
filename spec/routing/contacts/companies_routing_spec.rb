@@ -3,10 +3,6 @@ require "rails_helper"
 RSpec.describe Contacts::CompaniesController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      expect(:get => "/contacts/companies").to route_to("contacts/companies#index")
-    end
-
     it "routes to #new" do
       expect(:get => "/contacts/companies/new").to route_to("contacts/companies#new")
     end

@@ -10,9 +10,11 @@ RSpec.describe "Contacts::People", type: :request do
     after_each_test
   end
 
-  describe "GET /contacts_people" do
+  let(:contact) { create :contact_person}
+
+  describe "GET /contacts_people/:id" do
     it "works! (now write some real specs)" do
-      get contacts_people_path
+      get contacts_person_path(contact)
       expect(response).to have_http_status(200)
     end
   end

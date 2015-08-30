@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829152325) do
+ActiveRecord::Schema.define(version: 20150830095629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150829152325) do
     t.string   "tva"
     t.integer  "employees_count"
     t.integer  "company_id"
+    t.string   "type"
   end
 
   add_index "contacts", ["company_id"], name: "index_contacts_on_company_id", using: :btree

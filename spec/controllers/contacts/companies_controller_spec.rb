@@ -18,34 +18,26 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
     user_signed_in user
   end
 
-  describe "GET #index" do
-    it "assigns all contacts_companies as @contacts_companies" do
-      company = create(:contact_company)
-      get :index, {}, valid_session
-      expect(assigns(:contacts_companies)).to eq([company])
-    end
-  end
-
   describe "GET #show" do
-    it "assigns the requested contacts_company as @contacts_company" do
+    it "assigns the requested contacts_company as @contact" do
       company = create(:contact_company)
       get :show, {:id => company.to_param}, valid_session
-      expect(assigns(:contacts_company)).to eq(company)
+      expect(assigns(:contact)).to eq(company)
     end
   end
 
   describe "GET #new" do
-    it "assigns a new contacts_company as @contacts_company" do
+    it "assigns a new contacts_company as @contact" do
       get :new, {}, valid_session
-      expect(assigns(:contacts_company)).to be_a_new(Contacts::Company)
+      expect(assigns(:contact)).to be_a_new(Contacts::Company)
     end
   end
 
   describe "GET #edit" do
-    it "assigns the requested contacts_company as @contacts_company" do
+    it "assigns the requested contacts_company as @contact" do
       company = create(:contact_company)
       get :edit, {:id => company.to_param}, valid_session
-      expect(assigns(:contacts_company)).to eq(company)
+      expect(assigns(:contact)).to eq(company)
     end
   end
 
@@ -59,13 +51,13 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
 
       it "assigns a newly created contacts_company as @contacts_company" do
         post :create, {:contacts_company => valid_attributes}, valid_session
-        expect(assigns(:contacts_company)).to be_a(Contacts::Company)
-        expect(assigns(:contacts_company)).to be_persisted
+        expect(assigns(:contact)).to be_a(Contacts::Company)
+        expect(assigns(:contact)).to be_persisted
       end
 
       it "newly created contacts_company belongs_to user" do
         post :create, {:contacts_company => valid_attributes}, valid_session
-        expect(assigns(:contacts_company).user).to eq user
+        expect(assigns(:contact).user).to eq user
       end
 
       it "redirects to the created contacts_company" do
@@ -75,9 +67,9 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns a newly created but unsaved contacts_company as @contacts_company" do
+      it "assigns a newly created but unsaved contacts_company as @contact" do
         post :create, {:contacts_company => invalid_attributes}, valid_session
-        expect(assigns(:contacts_company)).to be_a_new(Contacts::Company)
+        expect(assigns(:contact)).to be_a_new(Contacts::Company)
       end
 
       it "re-renders the 'new' template" do
@@ -100,10 +92,10 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
         expect(company.name).to eq new_attributes[:name]
       end
 
-      it "assigns the requested contacts_company as @contacts_company" do
+      it "assigns the requested contacts_company as @contact" do
         company = create(:contact_company)
         put :update, {:id => company.to_param, :contacts_company => valid_attributes}, valid_session
-        expect(assigns(:contacts_company)).to eq(company)
+        expect(assigns(:contact)).to eq(company)
       end
 
       it "redirects to the contacts_company" do
@@ -114,10 +106,10 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
     end
 
     context "with invalid params" do
-      it "assigns the contacts_company as @contacts_company" do
+      it "assigns the contacts_company as @contact" do
         company = create(:contact_company)
         put :update, {:id => company.to_param, :contacts_company => invalid_attributes}, valid_session
-        expect(assigns(:contacts_company)).to eq(company)
+        expect(assigns(:contact)).to eq(company)
       end
 
       it "re-renders the 'edit' template" do
@@ -139,7 +131,7 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
     it "redirects to the contacts_companies list" do
       company = create(:contact_company)
       delete :destroy, {:id => company.to_param}, valid_session
-      expect(response).to redirect_to(contacts_companies_url)
+      expect(response).to redirect_to(contacts_url)
     end
   end
 

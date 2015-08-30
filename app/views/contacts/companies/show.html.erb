@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Siret:</strong>
-  <%= @contacts_company.siret %>
+  <%= @contact.siret %>
 </p>
 
 <p>
   <strong>Tva:</strong>
-  <%= @contacts_company.tva %>
+  <%= @contact.tva %>
 </p>
 
 <p>
   <strong>Employees count:</strong>
-  <%= @contacts_company.employees_count %>
+  <%= @contact.employees_count %>
 </p>
 
-<%= link_to 'Edit', edit_contacts_company_path(@contacts_company) %> |
-<%= link_to 'Back', contacts_companies_path %>
+<%= link_to 'Edit', edit_contacts_company_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

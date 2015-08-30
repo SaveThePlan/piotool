@@ -1,1 +1,1 @@
-json.extract! @contacts_person, :id, :mobile, :job, :created_at, :updated_at
+json.extract! @contact, :id, :mobile, :job, :created_at, :updated_at

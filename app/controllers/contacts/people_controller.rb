@@ -1,11 +1,4 @@
-class Contacts::PeopleController < ApplicationController
-  before_action :set_contacts_person, only: [:show, :edit, :update, :destroy]
-
-  # GET /contacts/people
-  # GET /contacts/people.json
-  def index
-    @contacts_people = Contacts::Person.all
-  end
+class Contacts::PeopleController < ContactsController
 
   # GET /contacts/people/1
   # GET /contacts/people/1.json
@@ -14,7 +7,7 @@ class Contacts::PeopleController < ApplicationController
 
   # GET /contacts/people/new
   def new
-    @contacts_person = Contacts::Person.new
+    @contact = Contacts::Person.new
   end
 
   # GET /contacts/people/1/edit
@@ -24,15 +17,15 @@ class Contacts::PeopleController < ApplicationController
   # POST /contacts/people
   # POST /contacts/people.json
   def create
-    @contacts_person = Contacts::Person.new(contacts_person_params.merge(user: current_user))
+    @contact = Contacts::Person.new(contacts_person_params.merge(user: current_user))
 
     respond_to do |format|
-      if @contacts_person.save
-        format.html { redirect_to @contacts_person, notice: 'Person was successfully created.' }
-        format.json { render :show, status: :created, location: @contacts_person }
+      if @contact.save
+        format.html { redirect_to @contact, notice: 'Person was successfully created.' }
+        format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
-        format.json { render json: @contacts_person.errors, status: :unprocessable_entity }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +34,12 @@ class Contacts::PeopleController < ApplicationController
   # PATCH/PUT /contacts/people/1.json
   def update
     respond_to do |format|
-      if @contacts_person.update(contacts_person_params)
-        format.html { redirect_to @contacts_person, notice: 'Person was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contacts_person }
+      if @contact.update(contacts_person_params)
+        format.html { redirect_to @contact, notice: 'Person was successfully updated.' }
+        format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
-        format.json { render json: @contacts_person.errors, status: :unprocessable_entity }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,21 +47,11 @@ class Contacts::PeopleController < ApplicationController
   # DELETE /contacts/people/1
   # DELETE /contacts/people/1.json
   def destroy
-    @contacts_person.destroy
+    @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_people_url, notice: 'Person was successfully destroyed.' }
+      format.html { redirect_to contacts_url, notice: 'Person was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_contacts_person
-      @contacts_person = Contacts::Person.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def contacts_person_params
-      Contacts::Person.permits_params(params.require(:contacts_person))
-    end
 end
