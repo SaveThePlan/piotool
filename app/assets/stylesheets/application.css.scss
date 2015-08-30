@@ -1,0 +1,34 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ */
+
+// load bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+
+// load colors and co
+@import "variables";
+
+// basic page elements
+html, body
+{
+  background-color:   $light-gray;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+* {
+  font-family: helvetica, Arial, sans-serif;
+  font-size: 1em;
+}
+
+.relative {
+  position: relative;
+}
+
+@import "main";

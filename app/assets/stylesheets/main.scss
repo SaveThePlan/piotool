@@ -1,0 +1,167 @@
+// Custom navbar
+.custom-navbar {
+  @extend .navbar;
+  background-color: $primary-color;
+  border-bottom: solid 2px $primary-color-dark;
+
+  .container {
+    padding: 10px;
+    height: 60px;
+  }
+}
+
+.root-link {
+  display: block;
+  float: left;
+  width: 80px;
+  height: 40px;
+  color: $white !important;
+  background-color: $primary-color;
+  margin: 0 1em 0 0;
+  padding: 0 .5em;
+  line-height: 40px;
+  font-size: 1.2em;
+  text-align: left;
+  cursor: pointer;
+
+  @media (max-width: $screen-sm-max) {
+    margin: 0;
+  }
+
+  &:hover, &:focus {
+    text-decoration: none;
+    background-color: $primary-color-light !important;
+  }
+
+}
+
+.navbar-nav {
+  @media (max-width: $screen-sm-max) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.navbar-nav li {
+
+  & > a {
+    color: $white !important;
+    background-color: $primary-color;
+    position: relative;
+    height: 40px;
+    cursor: pointer;
+    margin: 0 .5em 0 0;
+    padding: 0 .5em;
+    display: block;
+    line-height: 40px;
+    font-size: 1.2em;
+    text-align: center;
+
+    @media (max-width: $screen-sm-max) {
+      margin: 0;
+    }
+
+    &.active, &:active {
+      background-color: $primary-color-dark !important;
+      color: $primary-color-text;
+    }
+
+    &:hover, &.active:hover, &:focus, &.active:focus {
+      background-color: $primary-color-light !important;
+    }
+  }
+
+  & .dropdown-toggle:focus {
+    background-color: $primary-color-dark !important;
+  }
+
+  & .dropdown-menu {
+    background-color: $primary-color-dark;
+    margin-right: .5em;
+    padding: 0;
+    border: solid 1px transparent;
+
+    @media (max-width: $screen-sm-max) {
+      margin-right: 0;
+    }
+  }
+
+  &.dropdown.open {
+    & .dropdown-toggle {
+      height: 50px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    & .dropdown-menu {
+      display: block;
+
+      & > li > a {
+        height: 40px;
+        border-radius: 0;
+        cursor: pointer;
+        margin: 0;
+        padding: 0 .5em;
+        display: block;
+        line-height: 40px;
+        font-size: 1em;
+        text-align: center;
+
+        &.active, &:active {
+          background-color: $primary-color-light;
+        }
+      }
+    }
+
+  }
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: $primary-text-color;
+  color: $primary-color-text;
+  margin-top: 0;
+
+  &:hover, &:focus {
+    background-color: $primary-color-light;
+  }
+}
+
+.main {
+  @extend .container;
+  margin-top: $top-bar-height-pad; // displays under the top bar
+}
+
+.box {
+  background-color: $white;
+  border: 1px solid $primary-color;
+  padding: 10px;
+  margin: 5px;
+
+  overflow: hidden;
+
+  h2 {
+    color: $primary-color-text;
+    background-color: $primary-color;
+    text-align: center;
+    font-size: 1.5em;
+    padding: .5em;
+    margin: -10px -10px 1em -10px;
+  }
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.login-form {
+  @extend .box;
+
+  .form-actions {
+    @extend .text-center;
+  }
+}
+
+.content-box {
+  @extend .box;
+}
