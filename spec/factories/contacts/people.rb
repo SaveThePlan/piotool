@@ -1,6 +1,7 @@
 FactoryGirl.define do
 
   factory :contact_person, class: Contacts::Person do
+    sequence(:first_name) { |n| "John#{n}" }
     sequence(:name) { |n| "Nom contact #{n}" }
     sequence(:email) { |n| "contact#{n}@example.com" }
     address "1, Sunny street \n ZIP234 City"

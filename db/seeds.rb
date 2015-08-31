@@ -4,7 +4,8 @@ admin.add_role :admin
 user = User.create!(email: 'user@example.com', password: '12345678', password_confirmation: '12345678')
 
 Contacts::Person.create!(
-    name: 'John Doe',
+    first_name: 'John',
+    name: 'Doe',
     email: 'john.doe@example.com',
     address: '1, Sunny street \n ZIP234 City',
     phone: '+33 1 23 45 67 89',
@@ -14,7 +15,8 @@ Contacts::Person.create!(
 )
 
 Contacts::Person.create!(
-    name: 'Jane Doe',
+    first_name: 'Jane',
+    name: 'Doe',
     email: 'jane.doe@example.com',
     address: '1, Sunny street \n ZIP234 City',
     phone: '+33 1 23 45 67 89',

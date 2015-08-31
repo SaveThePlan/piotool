@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Contacts::Person, type: :model do
+  let(:first_name) { "Michel" }
   let(:mobile) { "06 22 33 44 55" }
   let(:job) { "Boss" }
 
   let(:b_contact) { build :contact_person }
-  let(:b_known_contact) { build :contact_person, mobile: mobile, job: job }
+  let(:b_known_contact) { build :contact_person, mobile: mobile, job: job, first_name: first_name }
   let(:b_in_company) { build :contact_person_in_company }
 
   context 'inheritance' do
@@ -50,6 +51,12 @@ RSpec.describe Contacts::Person, type: :model do
       it { should respond_to(:mobile) }
       it { expect(subject.mobile).to be_a String }
       it { expect(subject.mobile).to eq mobile }
+    end
+
+    describe '.first_name' do
+      it { should respond_to(:first_name) }
+      it { expect(subject.first_name).to be_a String }
+      it { expect(subject.first_name).to eq first_name }
     end
 
     describe '.job' do
