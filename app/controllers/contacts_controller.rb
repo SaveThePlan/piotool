@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = current_user.contacts
+    @contacts = current_user.contacts.order(:name, :first_name).page(params[:page])
   end
 
   private

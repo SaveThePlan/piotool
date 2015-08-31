@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where.not(id: current_user.id).all.page(params[:page])
+    @users = User.where.not(id: current_user.id).page(params[:page])
   end
 
   # POST /users/1/act_as

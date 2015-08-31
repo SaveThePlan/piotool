@@ -1,28 +1,28 @@
-<h1>Listing Contacts</h1>
+<div class="content-box col-centered">
+  <h2>Contacts</h2>
 
-<table>
-  <thead>
+  <%= paginate @contacts %>
+  <p class="pagination-total"><%= page_entries_info @contacts %></p>
+
+  <table class="table tablesorter">
+    <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Website</th>
-      <th colspan="3"></th>
+      <th>email</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @contacts.each do |contact| %>
-      <tr>
-        <td><%= contact.name %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.address %></td>
-        <td><%= contact.phone %></td>
-        <td><%= contact.website %></td>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td><%= full_name contact %></td>
+          <td><%= contact.email %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+  <%= paginate @contacts %>
+  <p class="pagination-total"><%= page_entries_info @contacts %></p>
+
+</div>
