@@ -1,12 +1,46 @@
-<p>
-  <strong>Mobile:</strong>
-  <%= @contact.mobile %>
-</p>
+<div class="content-box col-centered">
+  <h2><%= "Contacts #{full_name @contact}" %></h2>
 
-<p>
-  <strong>Job:</strong>
-  <%= @contact.job %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @contact.name %>
+  </p>
 
-<%= link_to 'Edit', edit_contacts_person_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+  <p>
+    <strong>First name:</strong>
+    <%= @contact.first_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @contact.email %>
+  </p>
+
+  <p>
+    <strong>address:</strong>
+    <%= @contact.address %>
+  </p>
+
+  <p>
+    <strong>phone:</strong>
+    <%= @contact.mobile %>
+  </p>
+
+  <p>
+    <strong>website:</strong>
+    <%= @contact.mobile %>
+  </p>
+
+  <p>
+    <strong>Mobile:</strong>
+    <%= @contact.mobile %>
+  </p>
+
+  <p>
+    <strong>Job:</strong>
+    <%= @contact.job %>
+  </p>
+
+  <%= link_to 'Edit', edit_contacts_person_path(@contact) %> |
+  <%= link_to 'Back', contacts_path %>
+</div>
