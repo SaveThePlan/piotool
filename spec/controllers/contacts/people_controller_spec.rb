@@ -64,6 +64,33 @@ RSpec.describe Contacts::PeopleController, type: :controller do
         post :create, {:contacts_person => valid_attributes}, valid_session
         expect(response).to redirect_to(Contacts::Person.last)
       end
+
+      it 'not link person to a company' do
+        post :create, {:contacts_person => valid_attributes, contacts_company: {name: ''}}, valid_session
+        expect(assigns(:contact).company).to be_nil
+      end
+
+      context 'with a company_id' do
+        it 'link person to company' do
+          company = create :contact_company
+          post :create, {:contacts_person => valid_attributes.merge(company_id: company.id), contacts_company: {name: ''}}, valid_session
+          expect(assigns(:contact).company).to eq company
+        end
+      end
+
+      context 'with new company fields' do
+        it 'change company count' do
+          expect {
+            post :create, {:contacts_person => valid_attributes, contacts_company: attributes_for(:contact_company)}, valid_session
+          }.to change(Contacts::Company, :count).by(1)
+        end
+
+        it 'link person to newly created company' do
+          post :create, {:contacts_person => valid_attributes, contacts_company: attributes_for(:contact_company)}, valid_session
+          expect(assigns(:contact).company).to_not be_nil
+          expect(assigns(:contact).company).to eq Contacts::Company.last
+        end
+      end
     end
 
     context "with invalid params" do
@@ -94,15 +121,69 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
       it "assigns the requested contacts_person as @contact" do
         person = create(:contact_person)
-        put :update, {:id => person.to_param, :contacts_person => valid_attributes}, valid_session
+        put :update, {:id => person.to_param, :contacts_person => new_attributes}, valid_session
         expect(assigns(:contact)).to eq(person)
       end
 
       it "redirects to the contacts_person" do
         person = create(:contact_person)
-        put :update, {:id => person.to_param, :contacts_person => valid_attributes}, valid_session
+        put :update, {:id => person.to_param, :contacts_person => new_attributes}, valid_session
         expect(response).to redirect_to(person)
       end
+
+      context 'with a company_id' do
+        it 'link person to company' do
+          person = create(:contact_person)
+          company = create :contact_company
+          put :update, {:id => person.to_param, :contacts_person => new_attributes.merge(company_id: company.id), contacts_company: {name: ''}}, valid_session
+          expect(person.reload.company).to eq company
+        end
+      end
+
+      context 'remove company' do
+        it 'remove link person to company' do
+          company = create :contact_company
+          person = create(:contact_person, company: company)
+          put :update, {:id => person.to_param, :contacts_person => new_attributes.merge(company_id: ''), contacts_company: {name: ''}}, valid_session
+          expect(person.reload.company).to be_nil
+        end
+      end
+
+      context 'with new company fields' do
+        it 'change company count' do
+          person = create(:contact_person)
+          expect {
+            put :update, {:id => person.to_param, :contacts_person => new_attributes, contacts_company: attributes_for(:contact_company)}, valid_session
+          }.to change(Contacts::Company, :count).by(1)
+        end
+
+        it 'link person to newly created company' do
+          person = create(:contact_person)
+          put :update, {:id => person.to_param, :contacts_person => new_attributes, contacts_company: attributes_for(:contact_company)}, valid_session
+          expect(person.reload.company).to_not be_nil
+          expect(person.reload.company).to eq Contacts::Company.last
+        end
+
+        context 'change company for a new one' do
+          it 'change company count' do
+            company = create :contact_company
+            person = create(:contact_person, company: company)
+            expect {
+              put :update, {:id => person.to_param, :contacts_person => new_attributes.merge(company_id: ''), contacts_company: {name: 'Yahoo'}}, valid_session
+            }.to change(Contacts::Company, :count).by(1)
+          end
+
+          it 're-link person to company' do
+            company = create :contact_company
+            person = create(:contact_person, company: company)
+            put :update, {:id => person.to_param, :contacts_person => new_attributes.merge(company_id: ''), contacts_company: {name: 'Yahoo'}}, valid_session
+            expect(person.reload.company).to_not be_nil
+            expect(person.reload.company).to eq Contacts::Company.last
+            expect(person.reload.company.name).to eq 'Yahoo'
+          end
+        end
+      end
+
     end
 
     context "with invalid params" do
