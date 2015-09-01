@@ -7,6 +7,9 @@ FactoryGirl.define do
 
     factory :note_desire, class: Notes::Desire do
     end
+
+    factory :note_offer, class: Notes::Offer do
+    end
   end
 
 end
