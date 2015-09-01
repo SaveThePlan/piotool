@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
   include PermitsAttributes
 
   has_many :contacts, inverse_of: :user, dependent: :destroy
+  has_many :notes, inverse_of: :user, dependent: :destroy
 
 end

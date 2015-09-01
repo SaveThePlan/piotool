@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
   let(:b_user) { build :user }
   let(:b_known_user) { build :user, email: email }
   let(:c_with_contacts) { create :user_with_contacts, contacts_count: list_count }
+  let(:c_with_notes) { create :user_with_notes, notes_count: list_count }
 
 
   context 'included modules' do
@@ -30,6 +31,13 @@ RSpec.describe User, type: :model do
       it { expect(subject).to respond_to :contacts }
       it { expect(subject.contacts.length).to eq list_count }
       it { expect(subject.contacts.first).to be_a Contact }
+    end
+
+    describe '.notes (has_many)' do
+      subject { c_with_notes }
+      it { expect(subject).to respond_to :notes }
+      it { expect(subject.notes.length).to eq list_count }
+      it { expect(subject.notes.first).to be_a Note }
     end
 
     describe 'roles' do

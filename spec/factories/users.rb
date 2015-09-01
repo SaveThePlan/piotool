@@ -16,6 +16,16 @@ FactoryGirl.define do
         create_list(:contact, evaluator.contacts_count, user: obj)
       end
     end
+
+    factory :user_with_notes do
+      transient do
+        notes_count 2
+      end
+
+      after(:create) do |obj, evaluator|
+        create_list(:note, evaluator.notes_count, user: obj)
+      end
+    end
   end
 
 end

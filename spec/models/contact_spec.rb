@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
 
+  let(:list_count) { 2 }
+
   let(:name) { "John Doe" }
   let(:email) { "john@example.com" }
   let(:address) { "A la croisee des chemins" }
@@ -11,6 +13,8 @@ RSpec.describe Contact, type: :model do
 
   let(:b_contact) { build :contact }
   let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website, fax: fax }
+
+  let(:c_with_notes) { create :contact_with_notes, notes_count: list_count }
 
 
   context 'included modules' do
@@ -38,6 +42,13 @@ RSpec.describe Contact, type: :model do
       subject { b_contact }
       it { expect(subject).to respond_to :user }
       it { expect(subject.user).to be_a User }
+    end
+
+    describe '.notes (has_many)' do
+      subject { c_with_notes }
+      it { expect(subject).to respond_to :notes }
+      it { expect(subject.notes.length).to eq list_count }
+      it { expect(subject.notes.first).to be_a Note }
     end
   end
 

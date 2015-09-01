@@ -6,5 +6,6 @@ class Contact < ActiveRecord::Base
   validates :name, presence: true
 
   belongs_to :user, inverse_of: :contacts
+  has_many :notes, inverse_of: :contact, dependent: :destroy
 
 end

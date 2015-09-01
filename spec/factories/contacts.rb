@@ -8,6 +8,16 @@ FactoryGirl.define do
     fax "+33 1 23 45 67 80"
     website "http://example.com"
     user
+
+    factory :contact_with_notes do
+      transient do
+        notes_count 2
+      end
+
+      after(:create) do |obj, evaluator|
+        create_list(:note, evaluator.notes_count, contact: obj)
+      end
+    end
   end
 
 end
