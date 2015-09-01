@@ -1,0 +1,30 @@
+<div class="content-box col-centered">
+  <h2>Notes</h2>
+
+  <%= paginate @notes %>
+  <p class="pagination-total"><%= page_entries_info @notes %></p>
+
+  <table class="table tablesorter">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Content</th>
+      <th>kind</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @notes.each do |note| %>
+        <tr>
+          <td><%= note.id %></td>
+          <td><%= note.content %></td>
+          <td><%= note.kind %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @notes %>
+  <p class="pagination-total"><%= page_entries_info @notes %></p>
+
+</div>

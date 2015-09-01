@@ -6,5 +6,6 @@ class Note < ActiveRecord::Base
   belongs_to :contact, inverse_of: :notes
 
   validates :user, presence: true
+  validates :kind, presence: true
 
 end

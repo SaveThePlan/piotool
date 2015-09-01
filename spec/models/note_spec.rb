@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Note, type: :model do
 
   let(:content) { "Hello I am the content" }
+  let(:kind) { :offer }
 
   let(:b_note) { build :note }
-  let(:b_known_note) { build :note, content: content }
+  let(:b_known_note) { build :note, content: content, kind: kind }
 
 
   context 'included modules' do
@@ -19,6 +20,11 @@ RSpec.describe Note, type: :model do
     describe 'presence of user' do
       it { expect(b_note).to be_valid }
       it { expect(build :note, user: nil).to_not be_valid }
+    end
+
+    describe 'presence of kind' do
+      it { expect(b_note).to be_valid }
+      it { expect(build :note, kind: nil).to_not be_valid }
     end
   end
 
@@ -45,6 +51,12 @@ RSpec.describe Note, type: :model do
       it { should respond_to(:content) }
       it { expect(subject.content).to be_a String }
       it { expect(subject.content).to eq content }
+    end
+
+    describe '.kind' do
+      it { should respond_to(:kind) }
+      it { expect(subject.kind).to be_a String }
+      it { expect(subject.kind).to eq kind.to_s }
     end
   end
 
