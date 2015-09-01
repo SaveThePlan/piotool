@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :people, except: [:index]
   end
 
+  namespace :notes do
+    resources :desires
+  end
+
   resources :users, only: [:index] do
     post 'act_as', on: :member
     delete 'myself_again', on: :collection
