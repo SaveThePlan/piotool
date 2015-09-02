@@ -60,4 +60,42 @@ RSpec.describe Note, type: :model do
     end
   end
 
+
+  context 'scopes' do
+    subject { b_known_note }
+
+    describe '.by_kind' do
+      it { expect(Note).to respond_to(:by_kind) }
+      it 'find matchind kind notes' do
+        desire = create :note, kind: :desire
+        offer = create :note, kind: :offer
+        expect(Note.by_kind(:offer)).to match_array [offer]
+      end
+    end
+
+    describe '.offers' do
+      it { expect(Note).to respond_to(:offers) }
+      it 'call by_kind with :offer' do
+        expect(Note).to receive(:by_kind).with(:offer)
+        Note.offers
+      end
+    end
+
+    describe '.desires' do
+      it { expect(Note).to respond_to(:desires) }
+      it 'call by_kind with :desire' do
+        expect(Note).to receive(:by_kind).with(:desire)
+        Note.desires
+      end
+    end
+
+    describe '.personals' do
+      it { expect(Note).to respond_to(:personals) }
+      it 'call by_kind with :personal' do
+        expect(Note).to receive(:by_kind).with(:personal)
+        Note.personals
+      end
+    end
+  end
+
 end
