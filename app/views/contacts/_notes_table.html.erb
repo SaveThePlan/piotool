@@ -1,0 +1,17 @@
+<table class="table tablesorter">
+  <thead>
+  <tr>
+    <th>Content</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% notes.each do |note| %>
+      <tr>
+        <td><%= simple_format note.content %></td>
+        <td><%= note.updated_at %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

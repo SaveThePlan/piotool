@@ -1,0 +1,41 @@
+<div class="content-box col-centered">
+  <h2><%= "Contact: #{full_name @contact}" %></h2>
+
+  <div class="btn-group pull-right">
+    <a href="<%= new_note_path %>" class="btn btn-primary">
+      <span class="glyphicon glyphicon-plus"></span> New Note
+    </a>
+  </div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a>
+    </li>
+    <li role="presentation">
+      <a href="#desires" aria-controls="desires" role="tab" data-toggle="tab">Desires</a>
+    </li>
+    <li role="presentation">
+      <a href="#offers" aria-controls="offers" role="tab" data-toggle="tab">Offers</a>
+    </li>
+    <li role="presentation">
+      <a href="#personals" aria-controls="personals" role="tab" data-toggle="tab">Notes</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="contact">
+      <%= render @contact %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="desires">
+      <%= render partial: 'contacts/notes_table', locals: {notes: @desire_notes} %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="offers">
+      <%= render partial: 'contacts/notes_table', locals: {notes: @offer_notes} %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="personals">
+      <%= render partial: 'contacts/notes_table', locals: {notes: @personal_notes} %>
+    </div>
+  </div>
+</div>

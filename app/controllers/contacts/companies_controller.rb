@@ -3,6 +3,9 @@ class Contacts::CompaniesController < ContactsController
   # GET /contacts/companies/1
   # GET /contacts/companies/1.json
   def show
+    @desire_notes = @contact.notes.desires
+    @offer_notes = @contact.notes.offers
+    @personal_notes = @contact.notes.personals
   end
 
   # GET /contacts/companies/new
