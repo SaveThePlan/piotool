@@ -10,9 +10,6 @@ FactoryGirl.define do
 
     factory :note_offer, class: Notes::Offer do
     end
-
-    factory :note_personal, class: Notes::Personal do
-    end
   end
 
 end

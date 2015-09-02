@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   namespace :notes do
     resources :desires
     resources :offers
-    resources :personals
   end
 
   resources :users, only: [:index] do
