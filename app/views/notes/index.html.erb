@@ -1,6 +1,12 @@
 <div class="content-box col-centered">
   <h2>Notes</h2>
 
+  <div class="btn-group pull-right">
+    <a href="<%= new_note_path %>" class="btn btn-primary">
+      <span class="glyphicon glyphicon-plus"></span> New Note
+    </a>
+  </div>
+
   <%= paginate @notes %>
   <p class="pagination-total"><%= page_entries_info @notes %></p>
 
@@ -26,5 +32,4 @@
 
   <%= paginate @notes %>
   <p class="pagination-total"><%= page_entries_info @notes %></p>
-
 </div>

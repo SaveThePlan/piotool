@@ -40,6 +40,13 @@ RSpec.describe NotesController, type: :controller do
       get :new, {}, valid_session
       expect(assigns(:note)).to be_a_new(Note)
     end
+
+    it "assigns a user contacts as @contacts" do
+      user_contact = create :contact, user: user
+      contact = create :contact
+      get :new, {}, valid_session
+      expect(assigns(:contacts)).to match_array [user_contact]
+    end
   end
 
   describe "GET #edit" do
