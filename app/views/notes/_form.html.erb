@@ -1,12 +1,16 @@
 <%= simple_form_for(@note) do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :kind, as: :radio_buttons, collection: %w(personal desire offer) %>
-    <%= f.input :contact_id, collection: @contacts, include_blank: 'No contact' %>
-    <%= f.input :content %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :kind, as: :radio_buttons, collection: %w(personal desire offer) %>
+      <% if action_name == 'new_for_contact' %>
+          <%= f.hidden_field :contact_id %>
+      <% else %>
+          <%= f.input :contact_id, collection: @contacts, include_blank: 'No contact' %>
+      <% end %>
+      <%= f.input :content %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>

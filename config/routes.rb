@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :people, except: [:index]
   end
 
+  get 'notes/new/:contact_id', to: 'notes#new_for_contact', as: 'new_note_for_contact'
   resources :notes
 
   resources :users, only: [:index] do

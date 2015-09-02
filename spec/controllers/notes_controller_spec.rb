@@ -12,7 +12,7 @@ RSpec.describe NotesController, type: :controller do
 
   let(:valid_session) { {} }
 
-  let(:user) {create :user}
+  let(:user) { create :user }
 
   before do
     user_signed_in user
@@ -46,6 +46,25 @@ RSpec.describe NotesController, type: :controller do
       contact = create :contact
       get :new, {}, valid_session
       expect(assigns(:contacts)).to match_array [user_contact]
+    end
+  end
+
+  describe "GET #new_for_contact" do
+    let(:contact) { create :contact }
+
+    it "assigns a new note as @note" do
+      get :new_for_contact, {contact_id: contact.to_param}, valid_session
+      expect(assigns(:note)).to be_a_new(Note)
+    end
+
+    it "assigns a new note linked to contact as @note" do
+      get :new_for_contact, {contact_id: contact.to_param}, valid_session
+      expect(assigns(:note).contact).to eq contact
+    end
+
+    it "render new template" do
+      get :new_for_contact, {contact_id: contact.to_param}, valid_session
+      expect(response).to render_template("new")
     end
   end
 

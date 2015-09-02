@@ -12,6 +12,10 @@ RSpec.describe NotesController, type: :routing do
       expect(:get => "/notes/new").to route_to("notes#new")
     end
 
+    it "routes to #new_for_contact" do
+      expect(:get => "/notes/new/1").to route_to("notes#new_for_contact", contact_id: '1')
+    end
+
     it "routes to #show" do
       expect(:get => "/notes/1").to route_to("notes#show", :id => "1")
     end

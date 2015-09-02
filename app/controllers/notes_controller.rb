@@ -18,6 +18,12 @@ class NotesController < ApplicationController
     @contacts = current_user.contacts
   end
 
+  # GET /notes/new/:contact_id
+  def new_for_contact
+    @note = Contact.find(params[:contact_id]).notes.build
+    render :new
+  end
+
   # GET /notes/1/edit
   def edit
   end
@@ -29,7 +35,10 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        format.html do
+          flash[:notice] = 'Note was successfully created.'
+          redirect_to @note.contact || @note
+        end
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
