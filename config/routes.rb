@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   namespace :notes do
     resources :desires
-    resources :offers
   end
 
   resources :users, only: [:index] do
