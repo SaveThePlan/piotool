@@ -8,6 +8,10 @@ class Note < ActiveRecord::Base
   validates :user, presence: true
   validates :kind, presence: true
 
+  scope :unassociated, ->() {
+    where(contact: nil)
+  }
+
   scope :offers, ->() {
     by_kind(:offer)
   }

@@ -66,7 +66,7 @@ RSpec.describe Note, type: :model do
 
     describe '.by_kind' do
       it { expect(Note).to respond_to(:by_kind) }
-      it 'find matchind kind notes' do
+      it 'find matching kind notes' do
         desire = create :note, kind: :desire
         offer = create :note, kind: :offer
         expect(Note.by_kind(:offer)).to match_array [offer]
@@ -94,6 +94,15 @@ RSpec.describe Note, type: :model do
       it 'call by_kind with :personal' do
         expect(Note).to receive(:by_kind).with(:personal)
         Note.personals
+      end
+    end
+
+    describe '.unassociated' do
+      it { expect(Note).to respond_to(:unassociated) }
+      it 'find matching notes' do
+        assoc_ok = create_list :note, 2
+        assoc_ko = create_list :note, 2, contact: nil
+        expect(Note.unassociated).to match_array assoc_ko
       end
     end
   end
