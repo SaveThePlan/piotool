@@ -27,6 +27,15 @@ RSpec.describe NotesController, type: :controller do
     end
   end
 
+  describe "GET #unassociated" do
+    it "assigns current_user unassociated notes as @notes" do
+      user_note_ok = create(:note, user: user)
+      user_note_ko = create(:note, user: user, contact: nil)
+      get :unassociated, {}, valid_session
+      expect(assigns(:notes)).to eq([user_note_ko])
+    end
+  end
+
   describe "GET #show" do
     it "assigns the requested note as @note" do
       note = create(:note)
@@ -78,7 +87,7 @@ RSpec.describe NotesController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Contacts::Company" do
+      it "creates a new Note" do
         expect {
           post :create, {:note => valid_attributes}, valid_session
         }.to change(Note, :count).by(1)
@@ -116,25 +125,26 @@ RSpec.describe NotesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
+      let(:person) {create :contact_person}
       let(:new_attributes) {
         {content: 'new content'}
       }
 
-      it "updates the requested contacts_company" do
-        note = create(:note)
+      it "updates the requested note" do
+        note = create(:note, contact: person)
         put :update, {:id => note.to_param, :note => new_attributes}, valid_session
         note.reload
         expect(note.content).to eq new_attributes[:content]
       end
 
       it "assigns the requested note as @note" do
-        note = create(:note)
+        note = create(:note, contact: person)
         put :update, {:id => note.to_param, :note => valid_attributes}, valid_session
         expect(assigns(:note)).to eq(note)
       end
 
       it "redirects to the note" do
-        note = create(:note)
+        note = create(:note, contact: nil)
         put :update, {:id => note.to_param, :note => valid_attributes}, valid_session
         expect(response).to redirect_to(note)
       end
@@ -142,13 +152,13 @@ RSpec.describe NotesController, type: :controller do
 
     context "with invalid params" do
       it "assigns the contacts_company as @note" do
-        note = create(:note)
+        note = create(:note, contact: nil)
         put :update, {:id => note.to_param, :note => invalid_attributes}, valid_session
         expect(assigns(:note)).to eq(note)
       end
 
       it "re-renders the 'edit' template" do
-        note = create(:note)
+        note = create(:note, contact: nil)
         put :update, {:id => note.to_param, :note => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end

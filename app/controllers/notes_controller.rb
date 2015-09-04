@@ -7,6 +7,12 @@ class NotesController < ApplicationController
     @notes = current_user.notes.page(params[:page])
   end
 
+  # GET /notes/unassociated
+  def unassociated
+    @notes = current_user.notes.unassociated.page(params[:page])
+    render :index
+  end
+
   # GET /notes/1
   # GET /notes/1.json
   def show
@@ -26,6 +32,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
+    @contacts = current_user.contacts
   end
 
   # POST /notes
@@ -52,7 +59,10 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
+        format.html do
+          flash[:notice] = 'Note was successfully updated.'
+          redirect_to @note.contact || @note
+        end
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
