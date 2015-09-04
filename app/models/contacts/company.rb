@@ -1,5 +1,5 @@
 class Contacts::Company < Contact
 
-  has_many :people, inverse_of: :company, class_name: Contacts::Person
+  has_many :people, inverse_of: :company, class_name: Contacts::Person, dependent: :nullify
 
 end
