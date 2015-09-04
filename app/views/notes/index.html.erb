@@ -16,6 +16,7 @@
       <th>ID</th>
       <th>Content</th>
       <th>kind</th>
+      <th>contact</th>
     </tr>
     </thead>
 
@@ -25,6 +26,7 @@
           <td><%= note.id %></td>
           <td><%= note.content %></td>
           <td><%= note.kind %></td>
+          <td><%= full_name note.contact if note.contact %></td>
         </tr>
     <% end %>
     </tbody>
