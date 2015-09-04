@@ -41,6 +41,7 @@
     margin-bottom: 0;
   }
 }
+
 .navbar-nav li {
 
   & > a {
@@ -62,7 +63,7 @@
 
     &.active, &:active {
       background-color: $primary-color-dark !important;
-      color: $primary-color-text;
+      color: $light-color-text;
     }
 
     &:hover, &.active:hover, &:focus, &.active:focus {
@@ -116,8 +117,8 @@
 }
 
 .navbar-inverse .navbar-toggle {
-  border-color: $primary-text-color;
-  color: $primary-color-text;
+  border-color: $dark-text-color;
+  color: $light-color-text;
   margin-top: 0;
 
   &:hover, &:focus {
@@ -139,7 +140,7 @@
   overflow: hidden;
 
   h2 {
-    color: $primary-color-text;
+    color: $light-color-text;
     background-color: $primary-color;
     text-align: center;
     font-size: 1.5em;
@@ -154,6 +155,10 @@ h3 {
   margin-bottom: 1em;
 }
 
+.content-box {
+  @extend .box;
+}
+
 .login-form {
   @extend .box;
 
@@ -161,11 +166,6 @@ h3 {
     @extend .text-center;
   }
 }
-
-.content-box {
-  @extend .box;
-}
-
 
 // Pagination - Kaminari
 
@@ -178,4 +178,31 @@ h3 {
 .pagination-total {
   text-align: center;
   margin: 0;
+}
+
+.home-box {
+  color: $light-color-text;
+  background-color: $primary-color;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 0;
+
+  a {
+    color: $light-color-text;
+    text-decoration: none;
+    display: block;
+    padding: 2em 0em;
+  }
+}
+
+.home-box-lime {
+  background-color: $lime-color;
+}
+
+.home-box-blue {
+  background-color: $blue-color;
+}
+
+.home-box-orange {
+  background-color: $orange-color;
 }

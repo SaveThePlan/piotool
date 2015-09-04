@@ -1,0 +1,34 @@
+<p class="text-center">Welcome <%= current_user.email %></p>
+
+<% if !current_user.contacts.empty? %>
+    <div class="col-sm-6 col-xs-12 home-box home-box-blue">
+      <%= link_to "#{current_user.contacts.count} contacts", contacts_path %>
+    </div>
+    <div class="col-sm-3 col-xs-6 home-box home-box-lime">
+      <%= link_to "Create a person", new_contacts_person_path %>
+    </div>
+    <div class="col-sm-3 col-xs-6 home-box home-box-orange">
+      <%= link_to "Create a company", new_contacts_company_path %>
+    </div>
+<% else %>
+    <div class="col-sm-6 col-xs-6 home-box home-box-lime">
+      <%= link_to "Create a person", new_contacts_person_path %>
+    </div>
+    <div class="col-sm-6 col-xs-6 home-box home-box-orange">
+      <%= link_to "Create a company", new_contacts_company_path %>
+    </div>
+<% end %>
+
+<% if !current_user.notes.empty? %>
+    <div class="col-sm-6 col-xs-12 home-box">
+      <%= link_to "#{current_user.notes.count} notes", notes_path %>
+    </div>
+    <div class="col-sm-6 col-xs-12 home-box home-box-blue">
+      <%= link_to "Create a note", new_note_path %>
+    </div>
+<% else %>
+    <div class="col-sm-12 col-xs-12 home-box home-box-blue">
+      <%= link_to "Create a note", new_note_path %>
+    </div>
+<% end %>
+

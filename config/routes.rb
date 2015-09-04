@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     delete 'myself_again', on: :collection
   end
 
-  root 'contacts#index'
+  root 'home#index'
 end
