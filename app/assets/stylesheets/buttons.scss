@@ -1,0 +1,43 @@
+// Basic button for everywhere
+.default-btn {
+  @extend .btn;
+  @extend .btn-info;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.edit-btn {
+  @extend .btn;
+  @extend .btn-info;
+  @extend .glyphicon;
+  @extend .glyphicon-pencil;
+}
+
+.delete-btn {
+  @extend .btn;
+  @extend .btn-danger;
+  @extend .glyphicon;
+  @extend .glyphicon-remove;
+}
+
+.show-btn {
+  @extend .btn;
+  @extend .btn-success;
+  @extend .glyphicon;
+  @extend .glyphicon-eye-open;
+}
+
+// button group
+.actions-group {
+  @extend .btn-group;
+  @extend .btn-group-xs;
+  @extend .pull-right;
+}
+
+.btn {
+  font-size: 1em;
+}
+.btn-xs {
+  font-size: .8em;
+}

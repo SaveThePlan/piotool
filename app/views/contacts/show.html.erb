@@ -1,11 +1,13 @@
 <div class="content-box col-centered">
-  <h2><%= "Contact: #{full_name @contact}" %></h2>
+  <h2>
+    <%= "Contact: #{full_name @contact}" %>
+    <div class="btn-group pull-right">
+      <a href="<%= new_note_for_contact_path(@contact) %>" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-plus"></span> New Note
+      </a>
+    </div>
+  </h2>
 
-  <div class="btn-group pull-right">
-    <a href="<%= new_note_for_contact_path(@contact) %>" class="btn btn-primary">
-      <span class="glyphicon glyphicon-plus"></span> New Note
-    </a>
-  </div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
