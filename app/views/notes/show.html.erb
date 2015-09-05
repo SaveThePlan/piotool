@@ -1,16 +1,16 @@
 <div class="content-box col-centered">
-  <h2>Note</h2>
+  <h2><%= t('views.notes.show.title') %></h2>
 
   <p>
-    <strong>content:</strong>
+    <strong><%= t('views.notes.show.content') %>:</strong>
     <%= @note.content %>
   </p>
 
   <p>
-    <strong>kind:</strong>
+    <strong><%= t('views.notes.show.kind') %>:</strong>
     <%= @note.kind %>
   </p>
 
-  <%= link_to 'Edit', edit_note_path(@note) %> |
-  <%= link_to 'Back', notes_path %>
+  <%= link_to t('views.notes.show.edit_link'), edit_note_path(@note) %> |
+  <%= link_to t('views.notes.show.back_list'), notes_path %>
 </div>

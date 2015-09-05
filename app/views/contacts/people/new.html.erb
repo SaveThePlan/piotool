@@ -1,6 +1,6 @@
 <div class="content-box col-centered">
-  <h2>New Person</h2>
+  <h2><%= t 'views.contacts.people.new.title' %></h2>
   <%= render 'form' %>
 
-  <%= link_to 'Back', contacts_path %>
+  <%= link_to t('views.contacts.people.new.back_list'), contacts_path %>
 </div>

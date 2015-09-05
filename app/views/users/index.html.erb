@@ -1,5 +1,5 @@
 <div class="content-box col-centered">
-  <h2>Users</h2>
+  <h2><%= t('views.users.index.title') %></h2>
 
   <%= paginate @users %>
   <p class="pagination-total"><%= page_entries_info @users %></p>
@@ -7,9 +7,9 @@
   <table class="table tablesorter">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>email</th>
-      <th>Act as</th>
+      <th><%= t('views.users.index.id') %></th>
+      <th><%= t('views.users.index.email') %></th>
+      <th><%= t('views.users.index.act_as') %></th>
     </tr>
     </thead>
 
@@ -22,7 +22,7 @@
             <% if user.has_role?(:admin) %>
                 <span class="green">ADMIN</span><br/>
             <% end %>
-            <%= link_to 'ACT AS', act_as_user_path(user), method: :post, class: 'btn btn-primary' %>
+            <%= link_to t('views.users.index.act_as'), act_as_user_path(user), method: :post, class: 'btn btn-primary' %>
           </td>
         </tr>
     <% end %>

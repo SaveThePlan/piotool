@@ -5,7 +5,7 @@
       <% if action_name == 'new_for_contact' %>
           <%= f.hidden_field :contact_id %>
       <% else %>
-          <%= f.input :contact_id, collection: @contacts, include_blank: 'No contact' %>
+          <%= f.input :contact_id, collection: @contacts, include_blank: t('views.notes._form.no_contact') %>
       <% end %>
       <%= f.input :content %>
     </div>

@@ -28,7 +28,7 @@ class Contacts::PeopleController < ContactsController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Person was successfully created.' }
+        format.html { redirect_to @contact, notice: t('controllers.contacts.people.create.success') }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class Contacts::PeopleController < ContactsController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @contact, notice: t('controllers.contacts.people.update.success') }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class Contacts::PeopleController < ContactsController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Person was successfully destroyed.' }
+      format.html { redirect_to contacts_url, notice: t('controllers.contacts.people.destroy.success') }
       format.json { head :no_content }
     end
   end

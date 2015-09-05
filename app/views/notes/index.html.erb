@@ -1,9 +1,9 @@
 <div class="content-box col-centered">
-  <h2>Notes</h2>
+  <h2><%= t('views.notes.index.title') %></h2>
 
   <div class="btn-group pull-right">
     <a href="<%= new_note_path %>" class="btn btn-primary">
-      <span class="glyphicon glyphicon-plus"></span> New Note
+      <span class="glyphicon glyphicon-plus"></span> <%= t('views.notes.index.new_note') %>
     </a>
   </div>
 
@@ -13,10 +13,10 @@
   <table class="table tablesorter">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Content</th>
-      <th>kind</th>
-      <th>contact</th>
+      <th><%= t('views.notes.index.id') %></th>
+      <th><%= t('views.notes.index.content') %></th>
+      <th><%= t('views.notes.index.kind') %></th>
+      <th><%= t('views.notes.index.contact') %></th>
       <th></th>
     </tr>
     </thead>

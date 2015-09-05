@@ -11,24 +11,24 @@ module ButtonsHelper
   end
 
   def show_btn(path, h_options = {})
-    h_options[:title] ||= 'Show'
+    h_options[:title] ||= t('helpers.buttons.show')
     h_options[:class] ||= 'btn show-btn'
 
     img_btn_to(path, h_options)
   end
 
   def edit_btn(path, h_options = {})
-    h_options[:title] ||= 'Edit'
+    h_options[:title] ||= t('helpers.buttons.edit')
     h_options[:class] ||= 'btn edit-btn'
 
     img_btn_to(path, h_options)
   end
 
   def delete_btn(path, h_options = {})
-    h_options[:title] ||= 'Delete'
+    h_options[:title] ||= t('helpers.buttons.delete')
     h_options[:method] ||= :delete
     h_options[:data] ||= {}
-    h_options[:data][:confirm] ||= 'Are you sure?'
+    h_options[:data][:confirm] ||= t('helpers.buttons.delete_confirm')
     h_options[:class] ||= 'btn delete-btn'
 
     img_btn_to(path, h_options)

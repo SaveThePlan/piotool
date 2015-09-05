@@ -1,6 +1,6 @@
 <div class="content-box col-centered">
-  <h2>New Note</h2>
+  <h2><%= t('views.notes.new.title') %></h2>
   <%= render 'form' %>
 
-  <%= link_to 'Back', notes_path %>
+  <%= link_to t('views.notes.new.back_list'), notes_path %>
 </div>

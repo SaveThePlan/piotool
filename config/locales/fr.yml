@@ -1,0 +1,193 @@
+fr:
+  controllers:
+    contacts:
+      companies:
+        create:
+          success: "L'entreprise a été créée"
+        update:
+          success: "L'entreprise a été modifiée"
+        destroy:
+          success: "L'entreprise a été supprimée"
+
+      people:
+        create:
+          success: 'Le contact a été créé'
+        update:
+          success: 'Le contact a été modifié'
+        destroy:
+          success: 'Le contact a été supprimé'
+
+    notes:
+      create:
+        success: 'La note a été créée'
+      update:
+        success: 'La note a été modifiée'
+      destroy:
+        success: 'La note a été supprimée'
+
+    users:
+      act_as:
+        success: 'Votre identité a changé'
+      myself_again:
+        success: 'De nouveau vous-même'
+
+  helpers:
+    buttons:
+      show: "Voir"
+      edit: "Modifier"
+      delete: "Supprimer"
+      delete_confirm: "Êtes-vous sûr ?"
+
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Aucun %{entry_name} trouvé"
+          one: "<b>1</b> %{entry_name}"
+          other: "<b>%{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "<b>%{first}&nbsp;-&nbsp;%{last}</b> (sur %{total})"
+
+  views:
+    contacts:
+      _notes_table:
+        content: "Contenu"
+        date: "Date"
+      index:
+        title: "Mes Contacts"
+        new_person: "Nouvelle personne"
+        new_company: "Nouvelle entreprise"
+        name: "Nom"
+        email: "Email"
+      show:
+        new_note: "Nouvelle note"
+        tab_contact: "Contact"
+        tab_desires: "Demandes"
+        tab_offers: "Offres"
+        tab_personals: "Notes"
+
+      companies:
+        _company:
+          name: "Nom"
+          email: "Email"
+          address: "Adresse"
+          phone: "Téléphone"
+          website: "Site internet"
+          siret: "Numéro de SIRET"
+          tva: "Numéro de TVA"
+          employees_count: "Nombre d'employés"
+        edit:
+          title: "Modifier l'entreprise"
+          show_link: "Fiche contact"
+          back_list: "Retour à la liste des contacts"
+        new:
+          title: "Nouvelle entreprise"
+          back_list: "Retour à la liste des contacts"
+      people:
+        _person:
+          name: "Nom"
+          first_name: "Prénom"
+          email: "Email"
+          address: "Adresse"
+          phone: "Téléphone"
+          website: "Site internet"
+          mobile: "Téléphone mobile"
+          job: "Poste"
+          company: "Entreprise"
+        edit:
+          title: "Modifier le contact"
+          show_link: "Fiche contact"
+          back_list: "Retour à la liste des contacts"
+        new:
+          title: "Nouveau contact"
+          back_list: "Retour à la liste des contacts"
+
+    devise:
+      registrations:
+        edit:
+          title: "Mon compte"
+          submit: "Modifier"
+          cancel_title: "Désinscription"
+          cancel_text: "Mécontent ?"
+          cancel_link: "Se désinscrire"
+          cancel_confirm: "Êtes-vous sûr ?"
+        new:
+          title: "Inscription"
+          submit: "S'inscrire"
+      sessions:
+        new:
+          title: "Connexion"
+          submit: "Se connecter"
+      shared:
+        _links:
+          log_in: "Connexion"
+          sign_up: "Inscription"
+
+    home:
+      index:
+        hello_user: "Bonjour %{email}"
+        contacts:
+          zero: "Aucun contact"
+          one: "1 contact"
+          other: "%{count} contacts"
+        new_person: "Nouveau contact"
+        new_company: "Nouvelle entreprise"
+        notes:
+          zero: "Aucune note"
+          one: "1 note"
+          other: "%{count} notes"
+        new_note: "Nouvelle note"
+        todo_notes:
+          zero: "Aucune note à traiter"
+          one: "1 note à traiter"
+          other: "%{count} notes à traiter"
+
+    layouts:
+      application:
+        title: "Networkbook"
+
+    notes:
+      _form:
+        no_contact: "Ne pas lier à un contact"
+      edit:
+        title: "Modifier la note"
+        show_link: "Voir la note"
+        back_list: "Retour à la liste des notes"
+      index:
+        title: "Notes"
+        new_note: "Nouvelle note"
+        id: "ID"
+        content: "Contenu"
+        kind: "type"
+        contact: "Contact associé"
+      new:
+        title: "Nouvelle note"
+        back_list: "Retour à la liste des notes"
+      show:
+        title: "Nouvelle note"
+        content: "Contenu"
+        kind: "Type"
+        edit_link: "Modifier"
+        back_list: "Retour à la liste des notes"
+    shared:
+      _main_nav:
+        contacts: "Mes contacts"
+        notes: "Mes notes"
+      _user_nav:
+        users: "Tous les utilisateurs"
+        myself: "Redevenir moi-même"
+        my_account: "Mon compte"
+        log_out: "Déconnexion"
+
+    users:
+      index:
+        title: "Tous les utilisateurs"
+        id: "ID"
+        email: "Email"
+        act_as: "Devenir"
+
+    pagination:
+      first: "&laquo; Début"
+      last: "Fin &raquo;"
+      previous: "&lsaquo; Préc."
+      next: "Suiv. &rsaquo;"
+      truncate: "&hellip;"

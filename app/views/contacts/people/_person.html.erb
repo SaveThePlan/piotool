@@ -1,46 +1,46 @@
 <div class='pull-right'><%= edit_btn(edit_contacts_person_path(@contact)) %></div>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t 'views.contacts.people._person.name' %>:</strong>
   <%= @contact.name %>
 </p>
 
 <p>
-  <strong>First name:</strong>
+  <strong><%= t 'views.contacts.people._person.first_name' %>:</strong>
   <%= @contact.first_name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong><%= t 'views.contacts.people._person.email' %>:</strong>
   <%= @contact.email %>
 </p>
 
 <p>
-  <strong>address:</strong>
+  <strong><%= t 'views.contacts.people._person.address' %>:</strong>
   <%= @contact.address %>
 </p>
 
 <p>
-  <strong>phone:</strong>
+  <strong><%= t 'views.contacts.people._person.phone' %>:</strong>
   <%= @contact.mobile %>
 </p>
 
 <p>
-  <strong>website:</strong>
+  <strong><%= t 'views.contacts.people._person.website' %>:</strong>
   <%= @contact.mobile %>
 </p>
 
 <p>
-  <strong>Mobile:</strong>
+  <strong><%= t 'views.contacts.people._person.mobile' %>:</strong>
   <%= @contact.mobile %>
 </p>
 
 <p>
-  <strong>Job:</strong>
+  <strong><%= t 'views.contacts.people._person.job' %>:</strong>
   <%= @contact.job %>
 </p>
 
 <p>
-  <strong>Company:</strong>
+  <strong><%= t 'views.contacts.people._person.company' %>:</strong>
   <%= @contact.company.name if @contact.company %>
 </p>

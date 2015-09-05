@@ -43,7 +43,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         format.html do
-          flash[:notice] = 'Note was successfully created.'
+          flash[:notice] = t('controllers.notes.create.success')
           redirect_to @note.contact || @note
         end
         format.json { render :show, status: :created, location: @note }
@@ -60,7 +60,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.html do
-          flash[:notice] = 'Note was successfully updated.'
+          flash[:notice] = t('controllers.notes.update.success')
           redirect_to @note.contact || @note
         end
         format.json { render :show, status: :ok, location: @note }
@@ -76,7 +76,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to notes_url, notice: t('controllers.notes.destroy.success') }
       format.json { head :no_content }
     end
   end

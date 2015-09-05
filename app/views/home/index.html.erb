@@ -1,40 +1,40 @@
-<p class="text-center">Welcome <%= current_user.email %></p>
+<p class="text-center"><%= t('views.home.index.hello_user', email: current_user.email) %></p>
 
 <% if !current_user.contacts.empty? %>
     <div class="col-sm-6 col-xs-12 home-box home-box-blue">
-      <%= link_to "#{current_user.contacts.count} contacts", contacts_path %>
+      <%= link_to t('views.home.index.contacts', count: current_user.contacts.count ), contacts_path %>
     </div>
     <div class="col-sm-3 col-xs-6 home-box home-box-lime">
-      <%= link_to "Create a person", new_contacts_person_path %>
+      <%= link_to t('views.home.index.new_person'), new_contacts_person_path %>
     </div>
     <div class="col-sm-3 col-xs-6 home-box home-box-orange">
-      <%= link_to "Create a company", new_contacts_company_path %>
+      <%= link_to t('views.home.index.new_company'), new_contacts_company_path %>
     </div>
 <% else %>
     <div class="col-sm-6 col-xs-6 home-box home-box-lime">
-      <%= link_to "Create a person", new_contacts_person_path %>
+      <%= link_to t('views.home.index.new_person'), new_contacts_person_path %>
     </div>
     <div class="col-sm-6 col-xs-6 home-box home-box-orange">
-      <%= link_to "Create a company", new_contacts_company_path %>
+      <%= link_to t('views.home.index.new_company'), new_contacts_company_path %>
     </div>
 <% end %>
 
 <% if !current_user.notes.empty? %>
     <div class="col-sm-6 col-xs-12 home-box">
-      <%= link_to "#{current_user.notes.count} notes", notes_path %>
+      <%= link_to t('views.home.index.notes', count: current_user.notes.count), notes_path %>
     </div>
     <div class="col-sm-6 col-xs-12 home-box home-box-blue">
-      <%= link_to "Create a note", new_note_path %>
+      <%= link_to t('views.home.index.new_note'), new_note_path %>
     </div>
 <% else %>
     <div class="col-sm-12 col-xs-12 home-box home-box-blue">
-      <%= link_to "Create a note", new_note_path %>
+      <%= link_to t('views.home.index.new_note'), new_note_path %>
     </div>
 <% end %>
 
 <% unassociated_notes = current_user.notes.unassociated %>
 <% unless unassociated_notes.empty? %>
     <div class="col-sm-12 col-xs-12 home-box home-box-orange">
-      <%= link_to "#{unassociated_notes.count} notes to work on", unassociated_notes_path %>
+      <%= link_to t('views.home.index.todo_notes', count: unassociated_notes.count), unassociated_notes_path %>
     </div>
 <% end %>

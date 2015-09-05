@@ -24,7 +24,7 @@ class Contacts::CompaniesController < ContactsController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Company was successfully created.' }
+        format.html { redirect_to @contact, notice: t('controllers.contacts.companies.create.success') }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -38,7 +38,7 @@ class Contacts::CompaniesController < ContactsController
   def update
     respond_to do |format|
       if @contact.update(contacts_company_params)
-        format.html { redirect_to @contact, notice: 'Company was successfully updated.' }
+        format.html { redirect_to @contact, notice: t('controllers.contacts.companies.update.success') }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -52,7 +52,7 @@ class Contacts::CompaniesController < ContactsController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to contacts_url, notice: t('controllers.contacts.companies.destroy.success') }
       format.json { head :no_content }
     end
   end

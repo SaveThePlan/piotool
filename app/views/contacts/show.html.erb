@@ -1,9 +1,9 @@
 <div class="content-box col-centered">
   <h2>
-    <%= "Contact: #{full_name @contact}" %>
+    <%= full_name @contact %>
     <div class="btn-group pull-right">
       <a href="<%= new_note_for_contact_path(@contact) %>" class="btn btn-primary btn-xs">
-        <span class="glyphicon glyphicon-plus"></span> New Note
+        <span class="glyphicon glyphicon-plus"></span> <%= t('views.contacts.show.new_note') %>
       </a>
     </div>
   </h2>
@@ -12,16 +12,16 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
-      <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a>
+      <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_contact') %></a>
     </li>
     <li role="presentation">
-      <a href="#desires" aria-controls="desires" role="tab" data-toggle="tab">Desires</a>
+      <a href="#desires" aria-controls="desires" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_desires') %></a>
     </li>
     <li role="presentation">
-      <a href="#offers" aria-controls="offers" role="tab" data-toggle="tab">Offers</a>
+      <a href="#offers" aria-controls="offers" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_offers') %></a>
     </li>
     <li role="presentation">
-      <a href="#personals" aria-controls="personals" role="tab" data-toggle="tab">Notes</a>
+      <a href="#personals" aria-controls="personals" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_personals') %></a>
     </li>
   </ul>
 

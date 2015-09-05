@@ -12,14 +12,14 @@ class UsersController < ApplicationController
     admin_id = current_user.id.to_s
     session[:act_as] = {'user' => change_to_id, 'admin' => admin_id}
     sign_in_as_user change_to_id
-    redirect_to :root, notice: 'Identity changed!'
+    redirect_to :root, notice: t('controllers.users.act_as.success')
   end
 
   # DELETE /users/myself_again
   def myself_again
     sign_in_as_user session[:act_as]['admin']
     session.delete(:act_as)
-    redirect_to :root, notice: 'Yourself again'
+    redirect_to :root, notice: t('controllers.users.myself_again.success')
   end
 
   private
