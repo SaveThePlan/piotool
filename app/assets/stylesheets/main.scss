@@ -212,3 +212,15 @@ h3 {
 .home-box-orange {
   background-color: $orange-color;
 }
+
+
+// tables
+.long-text-cell {
+  max-width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.actions-cell {
+  min-width: 60px;
+}
