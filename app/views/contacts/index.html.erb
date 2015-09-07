@@ -28,7 +28,7 @@
     <% @contacts.each do |contact| %>
         <tr>
           <td><%= link_to full_name(contact), contact %></td>
-          <td><%= contact.email %></td>
+          <td><%= mail_to contact.email %></td>
           <td><%= actions_group delete_btn(url_for(contact)) %></td>
         </tr>
     <% end %>
