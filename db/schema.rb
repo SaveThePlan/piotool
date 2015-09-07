@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901162556) do
+ActiveRecord::Schema.define(version: 20150907171523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,8 @@ ActiveRecord::Schema.define(version: 20150901162556) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "contact_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "kind",       default: "personal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "notes", ["contact_id"], name: "index_notes_on_contact_id", using: :btree

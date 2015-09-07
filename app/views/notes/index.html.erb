@@ -16,7 +16,6 @@
       <th></th>
       <th><%= t('views.notes.index.content') %></th>
       <th><%= t('views.notes.index.contact') %></th>
-      <th><%= t('views.notes.index.kind') %></th>
     </tr>
     </thead>
 
@@ -26,7 +25,6 @@
           <td class="actions-cell"><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
           <td class="long-text-cell"><%= note.content %></td>
           <td><%= full_name note.contact if note.contact %></td>
-          <td><%= note.kind %></td>
         </tr>
     <% end %>
     </tbody>

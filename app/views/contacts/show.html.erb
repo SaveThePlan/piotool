@@ -15,13 +15,7 @@
       <a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_contact') %></a>
     </li>
     <li role="presentation">
-      <a href="#desires" aria-controls="desires" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_desires') %></a>
-    </li>
-    <li role="presentation">
-      <a href="#offers" aria-controls="offers" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_offers') %></a>
-    </li>
-    <li role="presentation">
-      <a href="#personals" aria-controls="personals" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_personals') %></a>
+      <a href="#notes" aria-controls="notes" role="tab" data-toggle="tab"><%= t('views.contacts.show.tab_notes') %></a>
     </li>
   </ul>
 
@@ -30,14 +24,8 @@
     <div role="tabpanel" class="tab-pane active" id="contact">
       <%= render @contact %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="desires">
-      <%= render partial: 'contacts/notes_table', locals: {notes: @desire_notes} %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="offers">
-      <%= render partial: 'contacts/notes_table', locals: {notes: @offer_notes} %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="personals">
-      <%= render partial: 'contacts/notes_table', locals: {notes: @personal_notes} %>
+    <div role="tabpanel" class="tab-pane" id="notes">
+      <%= render partial: 'contacts/notes_table', locals: {notes: @notes} %>
     </div>
   </div>
 </div>

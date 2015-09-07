@@ -61,9 +61,7 @@ fr:
       show:
         new_note: "Nouvelle note"
         tab_contact: "Contact"
-        tab_desires: "Demandes"
-        tab_offers: "Offres"
-        tab_personals: "Notes"
+        tab_notes: "Notes"
 
       companies:
         _company:
@@ -157,7 +155,6 @@ fr:
         new_note: "Nouvelle note"
         id: "ID"
         content: "Contenu"
-        kind: "type"
         contact: "Contact associé"
       new:
         title: "Nouvelle note"
@@ -165,7 +162,6 @@ fr:
       show:
         title: "Nouvelle note"
         content: "Contenu"
-        kind: "Type"
         edit_link: "Modifier"
         back_list: "Retour à la liste des notes"
     shared:
