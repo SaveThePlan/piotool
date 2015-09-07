@@ -13,18 +13,18 @@
   <table class="table table-condensed table-striped table-hover tablesorter">
     <thead>
     <tr>
-      <th></th>
-      <th><%= t('views.notes.index.content') %></th>
+      <th><%= t('views.notes.index.title') %></th>
       <th><%= t('views.notes.index.contact') %></th>
+      <th></th>
     </tr>
     </thead>
 
     <tbody>
     <% @notes.each do |note| %>
         <tr>
-          <td class="actions-cell"><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
-          <td class="long-text-cell"><%= note.content %></td>
+          <td><%= link_to note.title, note %></td>
           <td><%= full_name note.contact if note.contact %></td>
+          <td><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
         </tr>
     <% end %>
     </tbody>

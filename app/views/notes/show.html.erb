@@ -1,11 +1,14 @@
 <div class="content-box col-centered">
-  <h2><%= t('views.notes.show.title') %></h2>
+  <h2><%= @note.title %></h2>
 
   <p>
-    <strong><%= t('views.notes.show.content') %>:</strong>
-    <%= @note.content %>
+    <%= simple_format @note.content %>
   </p>
 
   <%= link_to t('views.notes.show.edit_link'), edit_note_path(@note) %> |
-  <%= link_to t('views.notes.show.back_list'), notes_path %>
+  <% if @note.contact %>
+      <%= link_to t('views.notes.show.back'), @note.contact %>
+  <% else %>
+      <%= link_to t('views.notes.show.back'), notes_path %>
+  <% end %>
 </div>

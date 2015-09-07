@@ -7,7 +7,7 @@ RSpec.describe NotesController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    pending 'no invalid attributes'
+    attributes_for :note, title: nil
   }
 
   let(:valid_session) { {} }

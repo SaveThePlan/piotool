@@ -50,7 +50,7 @@ fr:
   views:
     contacts:
       _notes_table:
-        content: "Contenu"
+        title: "Titre"
         date: "Date"
       index:
         title: "Mes Contacts"
@@ -149,12 +149,12 @@ fr:
       edit:
         title: "Modifier la note"
         show_link: "Voir la note"
-        back_list: "Retour à la liste des notes"
+        back: "Retour"
       index:
         title: "Notes"
         new_note: "Nouvelle note"
         id: "ID"
-        content: "Contenu"
+        title: "Titre"
         contact: "Contact associé"
       new:
         title: "Nouvelle note"
@@ -163,7 +163,7 @@ fr:
         title: "Nouvelle note"
         content: "Contenu"
         edit_link: "Modifier"
-        back_list: "Retour à la liste des notes"
+        back: "Retour"
     shared:
       _main_nav:
         contacts: "Mes contacts"
