@@ -7,9 +7,4 @@ class Note < ActiveRecord::Base
 
   validates :user, presence: true
   validates :title, presence: true
-
-  scope :unassociated, ->() {
-    where(contact: nil)
-  }
-
 end

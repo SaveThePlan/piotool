@@ -8,10 +8,6 @@ RSpec.describe NotesController, type: :routing do
       expect(:get => "/notes").to route_to("notes#index")
     end
 
-    it "routes to #unassociated" do
-      expect(:get => "/notes/unassociated").to route_to("notes#unassociated")
-    end
-
     it "routes to #new" do
       expect(:get => "/notes/new").to route_to("notes#new")
     end

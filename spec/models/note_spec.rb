@@ -60,16 +60,4 @@ RSpec.describe Note, type: :model do
     end
   end
 
-
-  context 'scopes' do
-    describe '.unassociated' do
-      it { expect(Note).to respond_to(:unassociated) }
-      it 'find matching notes' do
-        assoc_ok = create_list :note, 2
-        assoc_ko = create_list :note, 2, contact: nil
-        expect(Note.unassociated).to match_array assoc_ko
-      end
-    end
-  end
-
 end

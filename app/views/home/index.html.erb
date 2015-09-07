@@ -31,10 +31,3 @@
       <%= link_to t('views.home.index.new_note'), new_note_path %>
     </div>
 <% end %>
-
-<% unassociated_notes = current_user.notes.unassociated %>
-<% unless unassociated_notes.empty? %>
-    <div class="col-sm-12 col-xs-12 home-box home-box-orange">
-      <%= link_to t('views.home.index.todo_notes', count: unassociated_notes.count), unassociated_notes_path %>
-    </div>
-<% end %>

@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'notes/new/:contact_id', to: 'notes#new_for_contact', as: 'new_note_for_contact'
-  resources :notes do
-    get :unassociated, on: :collection
-  end
+  resources :notes
 
   resources :users, only: [:index] do
     post 'act_as', on: :member

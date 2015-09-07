@@ -7,12 +7,6 @@ class NotesController < ApplicationController
     @notes = current_user.notes.page(params[:page])
   end
 
-  # GET /notes/unassociated
-  def unassociated
-    @notes = current_user.notes.unassociated.page(params[:page])
-    render :index
-  end
-
   # GET /notes/1
   # GET /notes/1.json
   def show

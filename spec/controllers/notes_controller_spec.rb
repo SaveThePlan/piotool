@@ -27,15 +27,6 @@ RSpec.describe NotesController, type: :controller do
     end
   end
 
-  describe "GET #unassociated" do
-    it "assigns current_user unassociated notes as @notes" do
-      user_note_ok = create(:note, user: user)
-      user_note_ko = create(:note, user: user, contact: nil)
-      get :unassociated, {}, valid_session
-      expect(assigns(:notes)).to eq([user_note_ko])
-    end
-  end
-
   describe "GET #show" do
     it "assigns the requested note as @note" do
       note = create(:note)
