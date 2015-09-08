@@ -1,13 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Contacts::Person, type: :model do
-  let(:first_name) { "Michel" }
-  let(:mobile) { "06 22 33 44 55" }
-  let(:job) { "Boss" }
 
   let(:b_contact) { build :contact_person }
-  let(:b_known_contact) { build :contact_person, mobile: mobile, job: job, first_name: first_name }
-  let(:b_in_company) { build :contact_person_in_company }
 
   context 'inheritance' do
     describe 'subclass Contact' do
@@ -36,8 +31,8 @@ RSpec.describe Contacts::Person, type: :model do
 
 
   context 'relations' do
-    describe '.comany (belongs_to Contacts::Company)' do
-      subject { b_in_company }
+    describe '.company (belongs_to Contacts::Company)' do
+      subject { build :contact_person_in_company }
       it { expect(subject).to respond_to :company }
       it { expect(subject.company).to be_a Contacts::Company }
     end
@@ -45,7 +40,11 @@ RSpec.describe Contacts::Person, type: :model do
 
 
   context 'attributes' do
-    subject { b_known_contact }
+    let(:first_name) { "Michel" }
+    let(:mobile) { "06 22 33 44 55" }
+    let(:job) { "Boss" }
+
+    subject { build :contact_person, mobile: mobile, job: job, first_name: first_name }
 
     describe '.mobile' do
       it { should respond_to(:mobile) }

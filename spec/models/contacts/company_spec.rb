@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Contacts::Company, type: :model do
 
-  let(:list_count) { 2 }
-  let(:siret) { "123445" }
-  let(:tva) { "my-custom-tva" }
-  let(:employees_count) { 66 }
-
   let(:b_contact) { build :contact_company }
-  let(:b_known_contact) { build :contact_company, siret: siret, tva: tva, employees_count: employees_count }
-  let(:c_with_people) { create :contact_company_with_people, people_count: list_count }
 
 
   context 'inheritance' do
@@ -40,16 +33,20 @@ RSpec.describe Contacts::Company, type: :model do
 
   context 'relations' do
     describe '.people (has_many Contacts::Person)' do
-      subject { c_with_people }
+      subject { create :contact_company_with_people, people_count: 2 }
       it { expect(subject).to respond_to :people }
-      it { expect(subject.people.length).to eq list_count }
+      it { expect(subject.people.length).to eq 2 }
       it { expect(subject.people.first).to be_a Contacts::Person }
     end
   end
 
 
   context 'attributes' do
-    subject { b_known_contact }
+    let(:siret) { "123445" }
+    let(:tva) { "my-custom-tva" }
+    let(:employees_count) { 66 }
+
+    subject { build :contact_company, siret: siret, tva: tva, employees_count: employees_count }
 
     describe '.siret' do
       it { should respond_to(:siret) }

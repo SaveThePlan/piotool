@@ -9,13 +9,13 @@ FactoryGirl.define do
     website "http://example.com"
     user
 
-    factory :contact_with_notes do
+    factory :contact_with_contact_notes do
       transient do
-        notes_count 2
+        contact_notes_count 2
       end
 
       after(:create) do |obj, evaluator|
-        create_list(:note, evaluator.notes_count, contact: obj)
+        create_list(:contact_note, evaluator.contact_notes_count, contact: obj)
       end
     end
   end

@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Note, type: :model do
 
-  let(:title) { "the title" }
-  let(:content) { "Hello I am the content" }
-
   let(:b_note) { build :note }
-  let(:b_known_note) { build :note, content: content, title: title }
 
 
   context 'included modules' do
@@ -36,16 +32,27 @@ RSpec.describe Note, type: :model do
       it { expect(subject.user).to be_a User }
     end
 
-    describe '.contact (belongs_to)' do
-      subject { b_note }
-      it { expect(subject).to respond_to :contact }
-      it { expect(subject.contact).to be_a Contact }
+    describe '.contact_notes (has_many)' do
+      subject { create :note_with_contact_notes, contact_notes_count: 2 }
+      it { expect(subject).to respond_to :contact_notes }
+      it { expect(subject.contact_notes.length).to eq 2 }
+      it { expect(subject.contact_notes.first).to be_a ContactNote }
+    end
+
+    describe '.contacts (has_many through contact_notes)' do
+      subject { create :note_with_contact_notes, contact_notes_count: 2 }
+      it { expect(subject).to respond_to :contacts }
+      it { expect(subject.contacts.length).to eq 2 }
+      it { expect(subject.contacts.first).to be_a Contact }
     end
   end
 
 
   context 'attributes' do
-    subject { b_known_note }
+    let(:title) { "the title" }
+    let(:content) { "Hello I am the content" }
+
+    subject { build :note, content: content, title: title }
 
     describe '.content' do
       it { should respond_to(:content) }

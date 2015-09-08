@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907174031) do
+ActiveRecord::Schema.define(version: 20150908140935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contact_notes", force: :cascade do |t|
+    t.integer  "contact_id"
+    t.integer  "note_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contact_notes", ["contact_id"], name: "index_contact_notes_on_contact_id", using: :btree
+  add_index "contact_notes", ["note_id"], name: "index_contact_notes_on_note_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -42,13 +52,11 @@ ActiveRecord::Schema.define(version: 20150907174031) do
   create_table "notes", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.integer  "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
   end
 
-  add_index "notes", ["contact_id"], name: "index_notes_on_contact_id", using: :btree
   add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
@@ -87,8 +95,9 @@ ActiveRecord::Schema.define(version: 20150907174031) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "contact_notes", "contacts"
+  add_foreign_key "contact_notes", "notes"
   add_foreign_key "contacts", "contacts", column: "company_id"
   add_foreign_key "contacts", "users"
-  add_foreign_key "notes", "contacts"
   add_foreign_key "notes", "users"
 end
