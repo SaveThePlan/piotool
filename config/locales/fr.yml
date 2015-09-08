@@ -155,7 +155,7 @@ fr:
         new_note: "Nouvelle note"
         id: "ID"
         title: "Titre"
-        contact: "Contact associé"
+        contacts: "Contacts associés"
       new:
         title: "Nouvelle note"
         back_list: "Retour à la liste des notes"

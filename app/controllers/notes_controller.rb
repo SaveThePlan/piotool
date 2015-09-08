@@ -15,12 +15,12 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
-    @contacts = current_user.contacts
   end
 
   # GET /notes/new/:contact_id
   def new_for_contact
-    @note = Contact.find(params[:contact_id]).notes.build
+    @note = Note.new
+    @contact_id = params[:contact_id]
     render :new
   end
 
@@ -33,12 +33,14 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params.merge(user: current_user))
+    @contact = Contact.find_by(id: params[:note][:contact_id])
+    @note.contacts << @contact if @contact
 
     respond_to do |format|
       if @note.save
         format.html do
           flash[:notice] = t('controllers.notes.create.success')
-          redirect_to @note.contact || @note
+          redirect_to @note
         end
         format.json { render :show, status: :created, location: @note }
       else
@@ -55,7 +57,7 @@ class NotesController < ApplicationController
       if @note.update(note_params)
         format.html do
           flash[:notice] = t('controllers.notes.update.success')
-          redirect_to @note.contact || @note
+          redirect_to @note
         end
         format.json { render :show, status: :ok, location: @note }
       else

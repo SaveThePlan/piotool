@@ -6,9 +6,5 @@
   </p>
 
   <%= link_to t('views.notes.show.edit_link'), edit_note_path(@note) %> |
-  <% if @note.contact %>
-      <%= link_to t('views.notes.show.back'), @note.contact %>
-  <% else %>
-      <%= link_to t('views.notes.show.back'), notes_path %>
-  <% end %>
+  <%= link_to t('views.notes.show.back'), notes_path %>
 </div>

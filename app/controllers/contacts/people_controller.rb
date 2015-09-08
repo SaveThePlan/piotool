@@ -3,7 +3,6 @@ class Contacts::PeopleController < ContactsController
   # GET /contacts/people/1
   # GET /contacts/people/1.json
   def show
-    @notes = @contact.notes
   end
 
   # GET /contacts/people/new

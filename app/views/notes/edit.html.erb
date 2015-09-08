@@ -4,9 +4,5 @@
   <%= render 'form' %>
 
   <%= link_to t('views.notes.edit.show_link'), @note %> |
-  <% if @note.contact %>
-      <%= link_to t('views.notes.edit.back'), @note.contact %>
-  <% else %>
       <%= link_to t('views.notes.edit.back'), notes_path %>
-  <% end %>
 </div>

@@ -20,16 +20,10 @@ RSpec.describe Contacts::CompaniesController, type: :controller do
 
   describe "GET #show" do
     let!(:company) { create(:contact_company) }
-    let!(:note) { create(:note, contact: company) }
 
     it "assigns the requested contacts_company as @contact" do
       get :show, {:id => company.to_param}, valid_session
       expect(assigns(:contact)).to eq(company)
-    end
-
-    it "assigns the requested @notes" do
-      get :show, {:id => company.to_param}, valid_session
-      expect(assigns(:notes)).to match_array [note]
     end
   end
 

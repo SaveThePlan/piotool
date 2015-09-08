@@ -40,13 +40,6 @@ RSpec.describe NotesController, type: :controller do
       get :new, {}, valid_session
       expect(assigns(:note)).to be_a_new(Note)
     end
-
-    it "assigns a user contacts as @contacts" do
-      user_contact = create :contact, user: user
-      contact = create :contact
-      get :new, {}, valid_session
-      expect(assigns(:contacts)).to match_array [user_contact]
-    end
   end
 
   describe "GET #new_for_contact" do
@@ -57,9 +50,9 @@ RSpec.describe NotesController, type: :controller do
       expect(assigns(:note)).to be_a_new(Note)
     end
 
-    it "assigns a new note linked to contact as @note" do
+    it "assigns a contact_id as @contact_id" do
       get :new_for_contact, {contact_id: contact.to_param}, valid_session
-      expect(assigns(:note).contact).to eq contact
+      expect(assigns(:contact_id)).to eq contact.id.to_s
     end
 
     it "render new template" do
@@ -78,26 +71,58 @@ RSpec.describe NotesController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Note" do
-        expect {
+      context 'simple note' do
+        it "creates a new Note" do
+          expect {
+            post :create, {:note => valid_attributes}, valid_session
+          }.to change(Note, :count).by(1)
+        end
+
+        it "assigns a newly created note as @note" do
           post :create, {:note => valid_attributes}, valid_session
-        }.to change(Note, :count).by(1)
+          expect(assigns(:note)).to be_a(Note)
+          expect(assigns(:note)).to be_persisted
+        end
+
+        it "newly created note belongs_to user" do
+          post :create, {:note => valid_attributes}, valid_session
+          expect(assigns(:note).user).to eq user
+        end
+
+        it "redirects to the created note" do
+          post :create, {:note => valid_attributes}, valid_session
+          expect(response).to redirect_to(Note.last)
+        end
       end
 
-      it "assigns a newly created note as @note" do
-        post :create, {:note => valid_attributes}, valid_session
-        expect(assigns(:note)).to be_a(Note)
-        expect(assigns(:note)).to be_persisted
-      end
+      context 'note for contact' do
+        let(:contact) { create :contact }
+        it "creates a new Note" do
+          expect {
+            post :create, {:note => valid_attributes.merge(contact_id: contact.id)}, valid_session
+          }.to change(Note, :count).by(1)
+        end
 
-      it "newly created note belongs_to user" do
-        post :create, {:note => valid_attributes}, valid_session
-        expect(assigns(:note).user).to eq user
-      end
+        it "assigns a newly created note as @note" do
+          post :create, {:note => valid_attributes.merge(contact_id: contact.id)}, valid_session
+          expect(assigns(:note)).to be_a(Note)
+          expect(assigns(:note)).to be_persisted
+        end
 
-      it "redirects to the created note" do
-        post :create, {:note => valid_attributes}, valid_session
-        expect(response).to redirect_to(Note.last)
+        it "newly created note belongs_to user" do
+          post :create, {:note => valid_attributes.merge(contact_id: contact.id)}, valid_session
+          expect(assigns(:note).user).to eq user
+        end
+
+        it "link new note to contact" do
+          post :create, {:note => valid_attributes.merge(contact_id: contact.id)}, valid_session
+          expect(assigns(:note).contacts).to match_array [contact]
+        end
+
+        it "redirects to the created note" do
+          post :create, {:note => valid_attributes.merge(contact_id: contact.id)}, valid_session
+          expect(response).to redirect_to(Note.last)
+        end
       end
     end
 
@@ -116,26 +141,25 @@ RSpec.describe NotesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:person) {create :contact_person}
       let(:new_attributes) {
         {content: 'new content'}
       }
 
       it "updates the requested note" do
-        note = create(:note, contact: person)
+        note = create(:note)
         put :update, {:id => note.to_param, :note => new_attributes}, valid_session
         note.reload
         expect(note.content).to eq new_attributes[:content]
       end
 
       it "assigns the requested note as @note" do
-        note = create(:note, contact: person)
+        note = create(:note)
         put :update, {:id => note.to_param, :note => valid_attributes}, valid_session
         expect(assigns(:note)).to eq(note)
       end
 
       it "redirects to the note" do
-        note = create(:note, contact: nil)
+        note = create(:note)
         put :update, {:id => note.to_param, :note => valid_attributes}, valid_session
         expect(response).to redirect_to(note)
       end
@@ -143,13 +167,13 @@ RSpec.describe NotesController, type: :controller do
 
     context "with invalid params" do
       it "assigns the contacts_company as @note" do
-        note = create(:note, contact: nil)
+        note = create(:note)
         put :update, {:id => note.to_param, :note => invalid_attributes}, valid_session
         expect(assigns(:note)).to eq(note)
       end
 
       it "re-renders the 'edit' template" do
-        note = create(:note, contact: nil)
+        note = create(:note)
         put :update, {:id => note.to_param, :note => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
       end

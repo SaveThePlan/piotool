@@ -23,7 +23,11 @@
     <% @notes.each do |note| %>
         <tr>
           <td><%= link_to note.title, note %></td>
-          <td><%= full_name note.contact if note.contact %></td>
+          <td>
+            <% note.contacts.each do |contact| %>
+                <%= "#{full_name(contact)}, " %>
+            <% end %>
+          </td>
           <td><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
         </tr>
     <% end %>

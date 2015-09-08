@@ -20,16 +20,10 @@ RSpec.describe Contacts::PeopleController, type: :controller do
 
   describe "GET #show" do
     let!(:person) { create(:contact_person) }
-    let!(:note) { create(:note, contact: person) }
 
     it "assigns the requested contacts_person as @contact" do
       get :show, {:id => person.to_param}, valid_session
       expect(assigns(:contact)).to eq(person)
-    end
-
-    it "assigns the requested @notes" do
-      get :show, {:id => person.to_param}, valid_session
-      expect(assigns(:notes)).to match_array [note]
     end
   end
 

@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "contacts/show", type: :view do
   before(:each) do
-    @contact = assign(:contact, create(:contact_person))
-    assign(:notes, create_list(:note, 2, contact: @contact))
+    @contact = create(:contact_person)
+    create_list(:contact_note, 2, contact: @contact)
+    assign(:contact, @contact)
   end
 
   it "renders" do

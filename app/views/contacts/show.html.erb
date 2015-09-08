@@ -25,7 +25,7 @@
       <%= render @contact %>
     </div>
     <div role="tabpanel" class="tab-pane" id="notes">
-      <%= render partial: 'contacts/notes_table', locals: {notes: @notes} %>
+      <%= render partial: 'contacts/notes_table', locals: {notes: @contact.notes} %>
     </div>
   </div>
 </div>
