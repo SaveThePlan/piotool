@@ -10,9 +10,14 @@ RSpec.describe Contact, type: :model do
   let(:phone) { "01 22 33 44 55" }
   let(:fax) { "01 22 33 44 00" }
   let(:website) { "http://website.com" }
+  let(:activity) { "dead man" }
+  let(:notefield) { "Oh this is my note" }
 
   let(:b_contact) { build :contact }
-  let(:b_known_contact) { build :contact, name: name, email: email, address: address, phone: phone, website: website, fax: fax }
+  let(:b_known_contact) { build :contact,
+                                name: name, email: email,
+                                address: address, phone: phone, website: website, fax: fax,
+                                activity: activity, notefield: notefield }
 
   let(:c_with_notes) { create :contact_with_notes, notes_count: list_count }
 
@@ -90,6 +95,18 @@ RSpec.describe Contact, type: :model do
       it { should respond_to(:website) }
       it { expect(subject.website).to be_a String }
       it { expect(subject.website).to eq website }
+    end
+
+    describe '.activity' do
+      it { should respond_to(:activity) }
+      it { expect(subject.activity).to be_a String }
+      it { expect(subject.activity).to eq activity }
+    end
+
+    describe '.notefield' do
+      it { should respond_to(:notefield) }
+      it { expect(subject.notefield).to be_a String }
+      it { expect(subject.notefield).to eq notefield }
     end
   end
 

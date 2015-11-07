@@ -68,6 +68,8 @@ fr:
       companies:
         _company:
           name: "Nom"
+          activity: "Activité"
+          notefield: "Note"
           email: "Email"
           address: "Adresse"
           phone: "Téléphone"
@@ -84,6 +86,8 @@ fr:
           back_list: "Retour à la liste des contacts"
       people:
         _person:
+          activity: "Activité"
+          notefield: "Note"
           name: "Nom"
           first_name: "Prénom"
           email: "Email"

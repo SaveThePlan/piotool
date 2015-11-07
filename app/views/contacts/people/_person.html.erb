@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong><%= t 'views.contacts.people._person.activity' %>:</strong>
+  <%= @contact.activity %>
+</p>
+
+<p>
   <strong><%= t 'views.contacts.people._person.email' %>:</strong>
   <%= mail_to @contact.email %>
 </p>
@@ -43,4 +48,9 @@
 <p>
   <strong><%= t 'views.contacts.people._person.company' %>:</strong>
   <%= link_to(@contact.company.name, @contact.company) if @contact.company %>
+</p>
+
+<p>
+  <strong><%= t 'views.contacts.people._person.notefield' %>:</strong>
+  <%= @contact.notefield %>
 </p>

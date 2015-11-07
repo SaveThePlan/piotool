@@ -7,6 +7,8 @@ FactoryGirl.define do
     phone "+33 1 23 45 67 89"
     fax "+33 1 23 45 67 80"
     website "http://example.com"
+    activity "an activity"
+    notefield "a note"
     user
 
     factory :contact_with_notes do

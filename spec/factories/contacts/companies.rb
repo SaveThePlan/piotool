@@ -10,6 +10,8 @@ FactoryGirl.define do
     siret "90876"
     tva "tva-124356"
     employees_count 12
+    activity "an activity"
+    notefield "a note"
     user
 
     factory :contact_company_with_people do

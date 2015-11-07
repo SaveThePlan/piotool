@@ -8,6 +8,8 @@ FactoryGirl.define do
     phone "+33 1 23 45 67 89"
     mobile "+33 6 23 45 67 89"
     job "CEO"
+    activity "an activity"
+    notefield "a note"
     user
 
     factory :contact_person_in_company do

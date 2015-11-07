@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong><%= t 'views.contacts.companies._company.activity' %>:</strong>
+  <%= @contact.activity %>
+</p>
+
+<p>
   <strong><%= t 'views.contacts.companies._company.email' %>:</strong>
   <%= mail_to @contact.email %>
 </p>
@@ -39,6 +44,11 @@
 <p>
   <strong><%= t 'views.contacts.companies._company.employees_count' %>:</strong>
   <%= @contact.employees_count %>
+</p>
+
+<p>
+  <strong><%= t 'views.contacts.companies._company.notefield' %>:</strong>
+  <%= @contact.notefield %>
 </p>
 
 
