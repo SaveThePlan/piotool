@@ -1,3 +1,5 @@
+<div class='pull-right'><%= edit_btn(edit_contacts_company_path(@contact)) %></div>
+
 <p>
   <strong><%= t 'views.contacts.companies._company.name' %>:</strong>
   <%= @contact.name %>
@@ -38,3 +40,26 @@
   <strong><%= t 'views.contacts.companies._company.employees_count' %>:</strong>
   <%= @contact.employees_count %>
 </p>
+
+
+<hr/>
+
+  <h3>Contacts</h3>
+
+  <table class="table tablesorter">
+    <thead>
+    <tr>
+      <th><%= t('views.contacts.index.name') %></th>
+      <th><%= t('views.contacts.index.email') %></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @contact.people.each do |person| %>
+        <tr>
+          <td><%= link_to full_name(person), person %></td>
+          <td><%= mail_to person.email %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>

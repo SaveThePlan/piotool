@@ -42,5 +42,5 @@
 
 <p>
   <strong><%= t 'views.contacts.people._person.company' %>:</strong>
-  <%= @contact.company.name if @contact.company %>
+  <%= link_to(@contact.company.name, @contact.company) if @contact.company %>
 </p>
