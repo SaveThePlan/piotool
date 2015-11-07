@@ -58,6 +58,34 @@ RSpec.describe Contact, type: :model do
   end
 
 
+  context 'scopes' do
+    describe '.search(text)' do
+      it { expect(Contact).to respond_to(:search) }
+
+      context 'find matching contacts' do
+        let!(:searchString) { 'SearchText' }
+        let!(:contact_0) { create :contact }
+        let!(:contact_1) { create :contact, name: 'searchText' }
+        let!(:contact_2) { create :contact, first_name: 'Searchtext' }
+        let!(:contact_3) { create :contact, email: 'searchtext@example.com' }
+        let!(:contact_4) { create :contact, activity: 'SEARCHTEXT' }
+
+        it 'search in all fields' do
+          expect(Contact.search(searchString)).to match_array [contact_1, contact_2, contact_3, contact_4]
+        end
+
+        it 'search in name only' do
+          expect(Contact.search(searchString, [:name])).to match_array [contact_1]
+        end
+
+        it 'search in name + first_name only' do
+          expect(Contact.search(searchString, [:name, :first_name])).to match_array [contact_1, contact_2]
+        end
+      end
+    end
+  end
+
+
   context 'attributes' do
     subject { b_known_contact }
 
