@@ -57,7 +57,9 @@ fr:
         new_person: "Nouvelle personne"
         new_company: "Nouvelle entreprise"
         name: "Nom"
+        first_name: "Prénom"
         email: "Email"
+        activity: "Activité"
       show:
         new_note: "Nouvelle note"
         tab_contact: "Contact"

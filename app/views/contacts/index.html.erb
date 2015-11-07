@@ -19,7 +19,9 @@
     <thead>
     <tr>
       <th><%= t('views.contacts.index.name') %></th>
+      <th><%= t('views.contacts.index.first_name') %></th>
       <th><%= t('views.contacts.index.email') %></th>
+      <th><%= t('views.contacts.index.activity') %></th>
       <th></th>
     </tr>
     </thead>
@@ -27,8 +29,10 @@
     <tbody>
     <% @contacts.each do |contact| %>
         <tr>
-          <td><%= link_to full_name(contact), contact %></td>
+          <td><%= link_to contact.name, contact %></td>
+          <td><%= link_to(contact.first_name, contact) if contact.is_a?(Contacts::Person) %></td>
           <td><%= mail_to contact.email %></td>
+          <td><%= mail_to contact.activity %></td>
           <td><%= actions_group delete_btn(url_for(contact)) %></td>
         </tr>
     <% end %>
