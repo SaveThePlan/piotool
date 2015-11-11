@@ -19,11 +19,25 @@ RSpec.describe NotesController, type: :controller do
   end
 
   describe "GET #index" do
-    it "assigns current_user notes as @notes" do
-      user_note = create(:note, user: user)
-      other_note = create(:note)
-      get :index, {}, valid_session
-      expect(assigns(:notes)).to eq([user_note])
+    context 'without params' do
+      it "assigns current_user notes as @notes" do
+        user_note = create(:note, user: user)
+        other_note = create(:note)
+        get :index, {}, valid_session
+        expect(assigns(:notes)).to eq([user_note])
+      end
+
+      it "assigns :nil as @search_scope" do
+        get :index, {}, valid_session
+        expect(assigns(:search_scope)).to be_nil
+      end
+    end
+
+    context 'with params' do
+      it "assigns 'searchString' as @search_scope" do
+        get :index, {options: {search: 'searchString'}}, valid_session
+        expect(assigns(:search_scope)).to eq 'searchString'
+      end
     end
   end
 

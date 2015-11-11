@@ -230,6 +230,7 @@ fr:
         back_list: "Retour à la liste des notes"
       index:
         title: "Notes"
+        search: "Rechercher"
         new_note: "Nouvelle note"
         id: "ID"
         content: "Contenu"

@@ -4,7 +4,14 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = current_user.notes.page(params[:page])
+    @notes = current_user.notes
+
+    @search_scope = (search_in_params?) ? params[:options][:search].to_s : nil
+    if @search_scope
+      @notes = @notes.search(@search_scope)
+    end
+
+    @notes = @notes.page(params[:page])
   end
 
   # GET /notes/unassociated
@@ -88,6 +95,14 @@ class NotesController < ApplicationController
 
   def note_params
     Note.permits_params(params.require(:note))
+  end
+
+  def search_in_params?
+    options_params? && params[:options][:search] && !params[:options][:search].blank?
+  end
+
+  def options_params?
+    params && params[:options]
   end
 
 end
