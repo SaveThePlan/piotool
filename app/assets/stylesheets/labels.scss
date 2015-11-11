@@ -1,0 +1,14 @@
+.lbl {
+  @extend .label;
+  font-size: .8em;
+  padding: .3em .8em .3em .5em;
+
+  .icon:before {
+    margin-right: .5em;
+  }
+}
+
+.lbl-divider {
+  background-color: $divider-color;
+  color: $secondary-text-color;
+}

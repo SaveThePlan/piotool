@@ -14,6 +14,18 @@
     </ul>
   </div>
 
+  <%= simple_form_for(:options, method: :get, html: {class: 'filters_form'}) do |f| %>
+      <%= f.input_field :search, required: false, value: @search_scope, placeholder: t('views.contacts.index.search') %>
+
+      <% searchable_fields_collection = []
+         @searchable_fields.each do |field|
+           searchable_fields_collection << [t("views.contacts.index.searchable_fields.#{field}"), field]
+         end
+      %>
+      <%= f.input_field :search_field, collection: searchable_fields_collection, selected: @search_field, include_blank: t('views.contacts.index.searchable_fields.all') %>
+
+<% end %>
+
 
   <table class="table tablesorter">
     <thead>

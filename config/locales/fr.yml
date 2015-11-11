@@ -54,6 +54,13 @@ fr:
         date: "Date"
       index:
         title: "Mes Contacts"
+        search: "Rechercher"
+        searchable_fields:
+          all: "Dans tous les champs"
+          name: 'Dans le nom'
+          first_name: 'Dans le prénom'
+          email: "Dans l'email"
+          activity: "Dans l'activité"
         new_person: "Nouvelle personne"
         new_company: "Nouvelle entreprise"
         name: "Nom"

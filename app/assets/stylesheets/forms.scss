@@ -1,0 +1,68 @@
+.simple_form {
+  .error {
+    @extend .alert;
+    @extend .alert-danger;
+  }
+
+  .field {
+    @extend .row;
+    @extend .form-group;
+    margin-left: 0;
+    margin-right: 0;
+
+    label {
+      @extend .col-sm-3;
+      @extend .control-label;
+    }
+
+    .field_hint, .form-control {
+      @extend .col-sm-9;
+
+      label {
+        width: auto;
+      }
+    }
+
+    .boolean {
+      @extend .col-sm-1;
+    }
+  }
+
+  .actions {
+    @extend .text-center;
+    @extend .form-group;
+    margin-left: 0;
+    margin-right: 0;
+
+    input, button {
+      @extend .btn;
+    }
+  }
+}
+
+.filters_form {
+  padding: 0 .5em;
+
+  .form-control, .form-control:empty {
+    @extend .lbl;
+    @extend .lbl-divider;
+    width: auto;
+    height: auto;
+    display: inline;
+  }
+
+  input {
+    background-color: $white !important;
+    outline: none;
+    box-shadow: none;
+    color: $secondary-text-color !important;
+    border-color: $divider-color;
+  }
+
+  input:focus, input.active {
+    box-shadow: none;
+    color: $primary-color !important;
+    border-color: $primary-color;
+  }
+
+}
