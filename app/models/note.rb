@@ -10,4 +10,8 @@ class Note < ActiveRecord::Base
   scope :unassociated, ->() {
     where(contact: nil)
   }
+
+  scope :search, ->(text) do
+    where("LOWER(notes.content) LIKE :search", search: "%#{text.downcase}%")
+  end
 end

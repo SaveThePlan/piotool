@@ -38,6 +38,22 @@ RSpec.describe Note, type: :model do
   end
 
 
+  context 'scopes' do
+    describe '.search(text)' do
+      let!(:searchString) { 'SearchText' }
+      let!(:note_0) { create :note }
+      let!(:note_1) { create :note, content: 'blmbla searchText' }
+      let!(:note_2) { create :note, content: 'Searchtext blabla' }
+
+      it { expect(Note).to respond_to(:search) }
+
+      it 'find matching notes' do
+        expect(Note.search(searchString)).to match_array [note_1, note_2]
+      end
+    end
+  end
+
+
   context 'attributes' do
     subject { b_known_note }
 
