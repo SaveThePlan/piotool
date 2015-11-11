@@ -1,32 +1,30 @@
 <div class="content-box col-centered table-responsive">
   <h2><%= t('views.notes.index.title') %></h2>
 
+  <%= paginate @notes %>
+  <p class="pagination-total"><%= page_entries_info @notes %></p>
+
   <div class="btn-group pull-right">
     <a href="<%= new_note_path %>" class="btn btn-primary">
       <span class="glyphicon glyphicon-plus"></span> <%= t('views.notes.index.new_note') %>
     </a>
   </div>
 
-  <%= paginate @notes %>
-  <p class="pagination-total"><%= page_entries_info @notes %></p>
-
   <table class="table table-condensed table-striped table-hover tablesorter">
     <thead>
     <tr>
-      <th></th>
       <th><%= t('views.notes.index.content') %></th>
       <th><%= t('views.notes.index.contact') %></th>
-      <th><%= t('views.notes.index.kind') %></th>
+      <th></th>
     </tr>
     </thead>
 
     <tbody>
     <% @notes.each do |note| %>
         <tr>
-          <td class="actions-cell"><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
           <td class="long-text-cell"><%= note.content %></td>
           <td><%= full_name note.contact if note.contact %></td>
-          <td><%= note.kind %></td>
+          <td class="actions-cell"><%= actions_group edit_btn(edit_note_path(note)), delete_btn(note_path(note)) %></td>
         </tr>
     <% end %>
     </tbody>

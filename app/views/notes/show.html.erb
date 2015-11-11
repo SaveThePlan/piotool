@@ -6,11 +6,6 @@
     <%= @note.content %>
   </p>
 
-  <p>
-    <strong><%= t('views.notes.show.kind') %>:</strong>
-    <%= @note.kind %>
-  </p>
-
   <%= link_to t('views.notes.show.edit_link'), edit_note_path(@note) %> |
   <%= link_to t('views.notes.show.back_list'), notes_path %>
 </div>
