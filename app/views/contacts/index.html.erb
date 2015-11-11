@@ -24,10 +24,26 @@
       %>
       <%= f.input_field :search_field, collection: searchable_fields_collection, selected: @search_field, include_blank: t('views.contacts.index.searchable_fields.all') %>
 
+      <br/>
+      <label class="select required" for="options_order"><%= t 'views.contacts.index.sort_by' %></label>
+      <% sortable_fields_collection = []
+         @searchable_fields.each do |field|
+           sortable_fields_collection << [t("views.contacts.index.sortable_fields.#{field}"), field]
+         end
+      %>
+      <%= f.input_field :order, collection: sortable_fields_collection, selected: @selected_order %>
+
+      <% sort_scopes_collection = []
+         @sorts.each do |scope|
+           sort_scopes_collection << [t("views.contacts.index.sorts.#{scope}"), scope]
+         end
+      %>
+      <%= f.input_field :sort, collection: sort_scopes_collection, selected: @selected_sort %>
+
 <% end %>
 
 
-  <table class="table tablesorter">
+  <table class="table pretty-table">
     <thead>
     <tr>
       <th><%= t('views.contacts.index.name') %></th>

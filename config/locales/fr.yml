@@ -54,6 +54,7 @@ fr:
         date: "Date"
       index:
         title: "Mes Contacts"
+        sort_by: 'Trier par'
         search: "Rechercher"
         searchable_fields:
           all: "Dans tous les champs"
@@ -61,6 +62,14 @@ fr:
           first_name: 'Dans le prénom'
           email: "Dans l'email"
           activity: "Dans l'activité"
+        sortable_fields:
+          name: 'nom'
+          first_name: 'prénom'
+          email: "email"
+          activity: "activité"
+        sorts:
+          asc: 'tri ascendant'
+          desc: "tri descendant"
         new_person: "Nouvelle personne"
         new_company: "Nouvelle entreprise"
         name: "Nom"

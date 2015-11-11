@@ -17,7 +17,13 @@ class ContactsController < ApplicationController
       @contacts = (@search_field) ? @contacts.search(@search_scope, [@search_field]) : @contacts.search(@search_scope)
     end
 
-    @contacts = @contacts.order(:name, :first_name)
+    @selected_order = (order_in_params? && @searchable_fields.include?(params[:options][:order].to_s)) ? params[:options][:order].to_s : 'name'
+
+    @sorts = %w(asc desc)
+    @selected_sort = (sort_in_params? && @sorts.include?(params[:options][:sort].to_s)) ? params[:options][:sort].to_s : 'asc'
+
+    @contacts = @contacts.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+
     @contacts = @contacts.page(params[:page])
   end
 
@@ -40,6 +46,14 @@ class ContactsController < ApplicationController
 
   def search_field_in_params?
     options_params? && params[:options][:search_field] && !params[:options][:search_field].blank?
+  end
+
+  def order_in_params?
+    options_params? && params[:options][:order] && !params[:options][:order].blank?
+  end
+
+  def sort_in_params?
+    options_params? && params[:options][:sort] && !params[:options][:sort].blank?
   end
 
   def options_params?

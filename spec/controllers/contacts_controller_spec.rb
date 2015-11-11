@@ -28,6 +28,16 @@ RSpec.describe ContactsController, type: :controller do
         get :index, {}, valid_session
         expect(assigns(:search_field)).to be_nil
       end
+
+      it "assigns email as @selected_order" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_order)).to eq 'name'
+      end
+
+      it "assigns asc as @selected_sort" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_sort)).to eq 'asc'
+      end
     end
 
     context 'with params' do
@@ -39,6 +49,16 @@ RSpec.describe ContactsController, type: :controller do
       it "assigns :name as @search_field" do
         get :index, {options: {search_field: 'name'}}, valid_session
         expect(assigns(:search_field)).to eq :name
+      end
+
+      it "assigns email as @selected_order" do
+        get :index, {options: {order: 'email'}}, valid_session
+        expect(assigns(:selected_order)).to eq 'email'
+      end
+
+      it "assigns desc as @selected_sort" do
+        get :index, {options: {sort: 'desc'}}, valid_session
+        expect(assigns(:selected_sort)).to eq 'desc'
       end
     end
   end
