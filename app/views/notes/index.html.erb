@@ -12,6 +12,22 @@
 
   <%= simple_form_for(:options, method: :get, html: {class: 'filters_form'}) do |f| %>
       <%= f.input_field :search, required: false, value: @search_scope, placeholder: t('views.notes.index.search') %>
+
+      <br/>
+      <label class="select required" for="options_order"><%= t 'views.notes.index.sort_by' %></label>
+      <% sortable_fields_collection = []
+         @order_fields.each do |field|
+           sortable_fields_collection << [t("views.notes.index.sortable_fields.#{field}"), field]
+         end
+      %>
+      <%= f.input_field :order, collection: sortable_fields_collection, selected: @selected_order %>
+
+      <% sort_scopes_collection = []
+         @sorts.each do |scope|
+           sort_scopes_collection << [t("views.notes.index.sorts.#{scope}"), scope]
+         end
+      %>
+      <%= f.input_field :sort, collection: sort_scopes_collection, selected: @selected_sort %>
   <% end %>
 
 

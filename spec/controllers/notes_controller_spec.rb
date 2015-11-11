@@ -31,12 +31,32 @@ RSpec.describe NotesController, type: :controller do
         get :index, {}, valid_session
         expect(assigns(:search_scope)).to be_nil
       end
+
+      it "assigns email as @selected_order" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_order)).to eq 'created_at'
+      end
+
+      it "assigns asc as @selected_sort" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_sort)).to eq 'desc'
+      end
     end
 
     context 'with params' do
       it "assigns 'searchString' as @search_scope" do
         get :index, {options: {search: 'searchString'}}, valid_session
         expect(assigns(:search_scope)).to eq 'searchString'
+      end
+
+      it "assigns content as @selected_order" do
+        get :index, {options: {order: 'content'}}, valid_session
+        expect(assigns(:selected_order)).to eq 'content'
+      end
+
+      it "assigns asc as @selected_sort" do
+        get :index, {options: {sort: 'asc'}}, valid_session
+        expect(assigns(:selected_sort)).to eq 'asc'
       end
     end
   end

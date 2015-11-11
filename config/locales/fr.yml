@@ -231,12 +231,20 @@ fr:
       index:
         title: "Notes"
         search: "Rechercher"
+        sort_by: 'Trier par'
         new_note: "Nouvelle note"
         id: "ID"
         content: "Contenu"
         contact: "Contact associé"
         create_date: "Date de création"
         update_date: "Date de modification"
+        sortable_fields:
+          created_at: 'date de création'
+          updated_at: 'date de modification'
+          content: "contenu"
+        sorts:
+          asc: 'tri ascendant'
+          desc: "tri descendant"
       new:
         title: "Nouvelle note"
         back_list: "Retour à la liste des notes"

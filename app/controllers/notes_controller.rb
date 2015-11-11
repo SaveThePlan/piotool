@@ -11,6 +11,14 @@ class NotesController < ApplicationController
       @notes = @notes.search(@search_scope)
     end
 
+    @order_fields = %w(content created_at updated_at)
+    @selected_order = (order_in_params? && @order_fields.include?(params[:options][:order].to_s)) ? params[:options][:order].to_s : 'created_at'
+
+    @sorts = %w(asc desc)
+    @selected_sort = (sort_in_params? && @sorts.include?(params[:options][:sort].to_s)) ? params[:options][:sort].to_s : 'desc'
+
+    @notes = @notes.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+
     @notes = @notes.page(params[:page])
   end
 
@@ -99,6 +107,14 @@ class NotesController < ApplicationController
 
   def search_in_params?
     options_params? && params[:options][:search] && !params[:options][:search].blank?
+  end
+
+  def order_in_params?
+    options_params? && params[:options][:order] && !params[:options][:order].blank?
+  end
+
+  def sort_in_params?
+    options_params? && params[:options][:sort] && !params[:options][:sort].blank?
   end
 
   def options_params?
