@@ -17,7 +17,12 @@ class NotesController < ApplicationController
     @sorts = %w(asc desc)
     @selected_sort = (sort_in_params? && @sorts.include?(params[:options][:sort].to_s)) ? params[:options][:sort].to_s : 'desc'
 
-    @notes = @notes.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+    #nullify empty string fields (but string type only)
+    @notes = if %w(content).include?(@selected_order)
+               @notes.order("NULLIF(#{@selected_order},'') #{@selected_sort} NULLS LAST")
+             else
+               @notes.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+             end
 
     @notes = @notes.page(params[:page])
   end

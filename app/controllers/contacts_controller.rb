@@ -22,7 +22,12 @@ class ContactsController < ApplicationController
     @sorts = %w(asc desc)
     @selected_sort = (sort_in_params? && @sorts.include?(params[:options][:sort].to_s)) ? params[:options][:sort].to_s : 'asc'
 
-    @contacts = @contacts.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+    #nullify empty string fields (but string type only)
+    @contacts = if %w(name first_name email activity).include?(@selected_order)
+                  @contacts.order("NULLIF(#{@selected_order},'') #{@selected_sort} NULLS LAST")
+                else
+                  @contacts.order("#{@selected_order} #{@selected_sort} NULLS LAST")
+                end
 
     @contacts = @contacts.page(params[:page])
   end
