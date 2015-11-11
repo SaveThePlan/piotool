@@ -1,4 +1,60 @@
 fr:
+  date:
+    abbr_day_names:
+    - dim
+    - lun
+    - mar
+    - mer
+    - jeu
+    - ven
+    - sam
+    abbr_month_names:
+    -
+    - jan.
+    - fév.
+    - mar.
+    - avr.
+    - mai
+    - juin
+    - juil.
+    - août
+    - sept.
+    - oct.
+    - nov.
+    - déc.
+    day_names:
+    - dimanche
+    - lundi
+    - mardi
+    - mercredi
+    - jeudi
+    - vendredi
+    - samedi
+    formats:
+      default: "%d/%m/%Y"
+      long: "%e %B %Y"
+      short: "%e %b"
+    month_names:
+    -
+    - janvier
+    - février
+    - mars
+    - avril
+    - mai
+    - juin
+    - juillet
+    - août
+    - septembre
+    - octobre
+    - novembre
+    - décembre
+    order:
+    - :day
+    - :month
+    - :year
+  time:
+    formats:
+      short_date: "%d %b %Y (%a)"
   controllers:
     contacts:
       companies:
@@ -178,6 +234,8 @@ fr:
         id: "ID"
         content: "Contenu"
         contact: "Contact associé"
+        create_date: "Date de création"
+        update_date: "Date de modification"
       new:
         title: "Nouvelle note"
         back_list: "Retour à la liste des notes"
