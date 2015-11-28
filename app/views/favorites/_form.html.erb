@@ -1,0 +1,12 @@
+<%= simple_form_for(@favorite) do |f| %>
+
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :url %>
+      <%= f.input :content, input_html: {rows: 8} %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>

@@ -73,6 +73,14 @@ fr:
         destroy:
           success: 'Le contact a été supprimé'
 
+    favorites:
+      create:
+        success: 'Le favori a été créé'
+      update:
+        success: 'Le favori a été modifié'
+      destroy:
+        success: 'Le favori a été supprimé'
+
     notes:
       create:
         success: 'La note a été créée'
@@ -198,6 +206,29 @@ fr:
           log_in: "Connexion"
           sign_up: "Inscription"
 
+    favorites:
+      edit:
+        title: "Modifier le favori"
+        show_link: "Voir le favori"
+        back_list: "Retour à la liste des favoris"
+      index:
+        title: "Favoris"
+        new_note: "Nouveau favori"
+        id: "ID"
+        title: "Titre"
+        url: "Url"
+        content: "Contenu"
+        create_date: "Date de création"
+      new:
+        title: "Nouveau favori"
+        back_list: "Retour à la liste des favoris"
+      show:
+        title: "Titre"
+        content: "Contenu"
+        url: "url"
+        edit_link: "Modifier"
+        back_list: "Retour à la liste des favoris"
+
     home:
       index:
         hello_user: "Bonjour %{email}"
@@ -253,9 +284,11 @@ fr:
         content: "Contenu"
         edit_link: "Modifier"
         back_list: "Retour à la liste des notes"
+
     shared:
       _main_nav:
         contacts: "Mes contacts"
+        favorites: "Mes favoris"
         notes: "Mes notes"
       _user_nav:
         users: "Tous les utilisateurs"

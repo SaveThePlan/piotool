@@ -1,0 +1,39 @@
+<div class="content-box col-centered table-responsive">
+  <h2><%= t('views.favorites.index.title') %></h2>
+
+  <%= paginate @favorites %>
+  <p class="pagination-total"><%= page_entries_info @favorites %></p>
+
+  <div class="btn-group pull-right">
+    <a href="<%= new_favorite_path %>" class="btn btn-primary">
+      <span class="glyphicon glyphicon-plus"></span> <%= t('views.favorites.index.new_note') %>
+    </a>
+  </div>
+
+  <table class="table table-condensed table-striped table-hover pretty-table">
+    <thead>
+    <tr>
+      <th><%= t('views.favorites.index.title') %></th>
+      <th><%= t('views.favorites.index.content') %></th>
+      <th><%= t('views.favorites.index.url') %></th>
+      <th><%= t('views.favorites.index.create_date') %></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @favorites.each do |favorite| %>
+        <tr>
+          <td><%= favorite.title %></td>
+          <td class="long-text-cell"><%= favorite.content %></td>
+          <td><%= favorite.url %></td>
+          <td><%= localize favorite.created_at, format: :short_date %></td>
+          <td class="actions-cell"><%= actions_group edit_btn(edit_favorite_path(favorite)), delete_btn(favorite_path(favorite)) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @favorites %>
+  <p class="pagination-total"><%= page_entries_info @favorites %></p>
+</div>

@@ -1,0 +1,8 @@
+<div class="content-box col-centered">
+  <h2><%= t('views.favorites.edit.title') %></h2>
+
+  <%= render 'form' %>
+
+  <%= link_to t('views.favorites.edit.show_link'), @favorite %> |
+  <%= link_to t('views.favorites.edit.back_list'), favorites_path %>
+</div>

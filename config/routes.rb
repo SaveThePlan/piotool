@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :notes do
     get :unassociated, on: :collection
   end
+  resources :favorites
 
   resources :users, only: [:index] do
     post 'act_as', on: :member
