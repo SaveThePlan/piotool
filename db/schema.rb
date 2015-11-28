@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111160948) do
+ActiveRecord::Schema.define(version: 20151128162755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20151111160948) do
 
   add_index "contacts", ["company_id"], name: "index_contacts_on_company_id", using: :btree
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.string  "title"
+    t.text    "content"
+    t.string  "url"
+    t.integer "user_id"
+  end
+
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.text     "content"
@@ -90,6 +99,7 @@ ActiveRecord::Schema.define(version: 20151111160948) do
 
   add_foreign_key "contacts", "contacts", column: "company_id"
   add_foreign_key "contacts", "users"
+  add_foreign_key "favorites", "users"
   add_foreign_key "notes", "contacts"
   add_foreign_key "notes", "users"
 end

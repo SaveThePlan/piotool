@@ -26,6 +26,16 @@ FactoryGirl.define do
         create_list(:note, evaluator.notes_count, user: obj)
       end
     end
+
+    factory :user_with_favorites do
+      transient do
+        favorites_count 2
+      end
+
+      after(:create) do |obj, evaluator|
+        create_list(:favorite, evaluator.favorites_count, user: obj)
+      end
+    end
   end
 
 end

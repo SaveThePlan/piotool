@@ -11,5 +11,6 @@ class User < ActiveRecord::Base
 
   has_many :contacts, inverse_of: :user, dependent: :destroy
   has_many :notes, inverse_of: :user, dependent: :destroy
+  has_many :favorites, inverse_of: :user, dependent: :destroy
 
 end
