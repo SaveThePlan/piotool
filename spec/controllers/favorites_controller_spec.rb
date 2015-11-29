@@ -19,11 +19,45 @@ RSpec.describe FavoritesController, type: :controller do
   end
 
   describe "GET #index" do
-    it "assigns current_user favorites as @favorites" do
-      user_favorite = create(:favorite, user: user)
-      other_favorite = create(:favorite)
-      get :index, {}, valid_session
-      expect(assigns(:favorites)).to eq([user_favorite])
+    context 'without params' do
+      it "assigns current_user favorites as @favorites" do
+        user_favorite = create(:favorite, user: user)
+        other_favorite = create(:favorite)
+        get :index, {}, valid_session
+        expect(assigns(:favorites)).to eq([user_favorite])
+      end
+
+      it "assigns :nil as @search_scope" do
+        get :index, {}, valid_session
+        expect(assigns(:search_scope)).to be_nil
+      end
+
+      it "assigns title as @selected_order" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_order)).to eq 'title'
+      end
+
+      it "assigns asc as @selected_sort" do
+        get :index, {}, valid_session
+        expect(assigns(:selected_sort)).to eq 'asc'
+      end
+    end
+
+    context 'with params' do
+      it "assigns 'searchString' as @search_scope" do
+        get :index, {options: {search: 'searchString'}}, valid_session
+        expect(assigns(:search_scope)).to eq 'searchString'
+      end
+
+      it "assigns created_at as @selected_order" do
+        get :index, {options: {order: 'created_at'}}, valid_session
+        expect(assigns(:selected_order)).to eq 'created_at'
+      end
+
+      it "assigns desc as @selected_sort" do
+        get :index, {options: {sort: 'desc'}}, valid_session
+        expect(assigns(:selected_sort)).to eq 'desc'
+      end
     end
   end
 

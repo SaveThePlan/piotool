@@ -213,12 +213,21 @@ fr:
         back_list: "Retour à la liste des favoris"
       index:
         title: "Favoris"
-        new_note: "Nouveau favori"
+        new_favorite: "Nouveau favori"
         id: "ID"
         title: "Titre"
         url: "Url"
         content: "Contenu"
         create_date: "Date de création"
+        search: "Rechercher"
+        sort_by: 'Trier par'
+        sortable_fields:
+          created_at: 'date de création'
+          title: "titre"
+          url: "url"
+        sorts:
+          asc: 'tri ascendant'
+          desc: "tri descendant"
       new:
         title: "Nouveau favori"
         back_list: "Retour à la liste des favoris"

@@ -6,9 +6,29 @@
 
   <div class="btn-group pull-right">
     <a href="<%= new_favorite_path %>" class="btn btn-primary">
-      <span class="glyphicon glyphicon-plus"></span> <%= t('views.favorites.index.new_note') %>
+      <span class="glyphicon glyphicon-plus"></span> <%= t('views.favorites.index.new_favorite') %>
     </a>
   </div>
+
+  <%= simple_form_for(:options, method: :get, html: {class: 'filters_form'}) do |f| %>
+      <%= f.input_field :search, required: false, value: @search_scope, placeholder: t('views.favorites.index.search') %>
+
+      <br/>
+      <label class="select required" for="options_order"><%= t 'views.favorites.index.sort_by' %></label>
+      <% sortable_fields_collection = []
+         @order_fields.each do |field|
+           sortable_fields_collection << [t("views.favorites.index.sortable_fields.#{field}"), field]
+         end
+      %>
+      <%= f.input_field :order, collection: sortable_fields_collection, selected: @selected_order %>
+
+      <% sort_scopes_collection = []
+         @sorts.each do |scope|
+           sort_scopes_collection << [t("views.favorites.index.sorts.#{scope}"), scope]
+         end
+      %>
+      <%= f.input_field :sort, collection: sort_scopes_collection, selected: @selected_sort %>
+  <% end %>
 
   <table class="table table-condensed table-striped table-hover pretty-table">
     <thead>
