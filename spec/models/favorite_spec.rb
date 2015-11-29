@@ -40,6 +40,19 @@ RSpec.describe Favorite, type: :model do
 
 
   context 'scopes' do
+    describe '.search(text)' do
+      let!(:searchString) { 'SearchText' }
+      let!(:fav_0) { create :favorite }
+      let!(:fav_1) { create :favorite, title: 'searchText' }
+      let!(:fav_2) { create :favorite, content: 'Searchtext blabla' }
+      let!(:fav_3) { create :favorite, url: 'http://searchtext.com' }
+
+      it { expect(Favorite).to respond_to(:search) }
+
+      it 'find matching notes' do
+        expect(Favorite.search(searchString)).to match_array [fav_1, fav_2, fav_3]
+      end
+    end
   end
 
 
