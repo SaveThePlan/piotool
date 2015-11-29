@@ -46,7 +46,7 @@
         <tr>
           <td><%= favorite.title %></td>
           <td class="long-text-cell"><%= favorite.content %></td>
-          <td><%= favorite.url %></td>
+          <td><%= link_to favorite.url, favorite.url, target: :blank %></td>
           <td><%= localize favorite.created_at, format: :short_date %></td>
           <td class="actions-cell"><%= actions_group edit_btn(edit_favorite_path(favorite)), delete_btn(favorite_path(favorite)) %></td>
         </tr>

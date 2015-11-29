@@ -13,7 +13,7 @@
 
   <p>
     <strong><%= t('views.favorites.show.url') %>:</strong>
-    <%= @favorite.url %>
+    <%= link_to @favorite.url, @favorite.url, target: :blank %>
   </p>
 
   <%= link_to t('views.favorites.show.edit_link'), edit_favorite_path(@favorite) %> |
