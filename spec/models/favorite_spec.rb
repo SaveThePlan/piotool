@@ -82,4 +82,17 @@ RSpec.describe Favorite, type: :model do
     end
   end
 
+
+  context 'callbacks' do
+    context 'before_validation' do
+      let!(:bad_url) { 'example.com' }
+      subject { build :favorite, url: bad_url }
+
+      it 'add http to url' do
+        subject.valid?
+        expect(subject.url).to eq "http://#{bad_url}"
+      end
+    end
+  end
+
 end
